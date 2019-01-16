@@ -4,13 +4,26 @@
 
 import HeaderFooterLayout from './layouts/HeaderFooterLayout';
 import Home from './pages/Home';
+import Problems from './pages/Problems';
+import MyHome from './pages/MyHome';
 import NotFound from './pages/NotFound';
+
 
 const routerConfig = [
   {
     path: '/',
     layout: HeaderFooterLayout,
     component: Home,
+  },
+  {
+    path: '/problems',
+    layout: HeaderFooterLayout,
+    component: Problems,
+  },
+  {
+    path: '/myhome/:id',
+    layout: HeaderFooterLayout,
+    component: MyHome,
   },
   {
     path: '*',

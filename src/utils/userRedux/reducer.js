@@ -2,7 +2,15 @@ import { reducer as userLoginReducer } from './userLogin';
 import { reducer as userLogoutReducer } from './userLogout';
 
 const initState = {
-  login: false,
+  is_login: false,
+  is_admin: false,
+  id: '',
+  token: '',
+  name: '',
+  banji: '',
+  username: '',
+  image: '',
+  vjid: '',
 };
 
 const reducers = [

@@ -1,4 +1,4 @@
-import { Balloon, Button, Icon, Dialog } from '@icedesign/base';
+import { Balloon, Button, Icon, Dialog, Feedback } from '@icedesign/base';
 import IceImg from '@icedesign/img';
 import FoundationSymbol from 'foundation-symbol';
 import React from 'react';
@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../utils/userRedux/actions';
-import SignupForm from '../SignupForm';
+import SignupForm from './SignupForm';
 import './User.scss';
+
+const Toast = Feedback.toast;
 
 @withRouter
 class user extends React.Component {
@@ -15,12 +17,12 @@ class user extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      name: '小明',
-      class1: '计科17-3',
-      img: require('./images/avatar.png'),
     };
     this.onLoginClick = this.onLoginClick.bind(this);
     this.onRegisterClick = this.onRegisterClick.bind(this);
+    this.onLogin = this.onLogin.bind(this);
+    this.onLogout = this.onLogout.bind(this);
+    this.handleToMyHome = this.handleToMyHome.bind(this);
   }
 
   onLoginClick() {
@@ -33,9 +35,35 @@ class user extends React.Component {
     this.props.history.push('/register');
   }
 
+  onLogin(data) {
+    this.props.actions.login(data);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  onLogout() {
+    this.props.actions.logout();
+    Toast.success('登出成功');
+  }
+
+  handleToMyHome() {
+    const url = `/myhome/${this.props.user.id}`;
+    this.props.history.push(url);
+  }
+
   render() {
-    const { login } = this.props.user.login;
-    if (login) {
+    const isLogin = this.props.user.is_login;
+    const isAdmin = this.props.user.is_admin;
+    // 头像未解决 留坑
+    const { name, banji, image } = this.props.user;
+    const manager = (
+      <li className="user-profile-menu-item">
+        <FoundationSymbol type="ul-list" size="small" />
+        队伍管理
+      </li>
+    );
+    if (isLogin) {
       return (
         <Balloon
           trigger={
@@ -50,15 +78,15 @@ class user extends React.Component {
               <IceImg
                 height={40}
                 width={40}
-                src={this.state.img}
+                src={require('./images/avatar.png')}
                 className="user-avatar"
               />
               <div className="user-profile">
                 <span className="user-name" style={{ fontSize: '13px' }}>
-                  {this.state.name}
+                  {name}
                 </span>
                 <br />
-                <span className="user-department">{this.state.class1}</span>
+                <span className="user-department">{banji}</span>
               </div>
               <Icon
                 type="arrow-down-filling"
@@ -72,16 +100,21 @@ class user extends React.Component {
         >
           <ul>
             <li className="user-profile-menu-item">
-              <FoundationSymbol type="person" size="small" />
-              我的主页
+              <div onClick={this.handleToMyHome}>
+                <FoundationSymbol type="person" size="small" />
+                我的主页
+              </div>
             </li>
+            {isAdmin && manager}
             <li className="user-profile-menu-item">
               <FoundationSymbol type="repair" size="small" />
               信息设置
             </li>
             <li className="user-profile-menu-item">
-              <FoundationSymbol type="compass" size="small" />
-              退出
+              <div onClick={this.onLogout}>
+                <FoundationSymbol type="compass" size="small" />
+                退出
+              </div>
             </li>
           </ul>
         </Balloon>
@@ -89,10 +122,18 @@ class user extends React.Component {
     }
     return (
       <div className="header-login">
-        <Button type="light" className="login-item" onClick={this.onRegisterClick}>
+        <Button
+          type="light"
+          className="login-item"
+          onClick={this.onRegisterClick}
+        >
           注册
         </Button>
-        <Button type="primary" className="login-item" onClick={this.onLoginClick}>
+        <Button
+          type="primary"
+          className="login-item"
+          onClick={this.onLoginClick}
+        >
           登陆
         </Button>
         <Dialog
@@ -100,7 +141,7 @@ class user extends React.Component {
           footer={false}
           onClose={this.onLoginClick}
         >
-          <SignupForm />
+          <SignupForm onLogin={this.onLogin} />
         </Dialog>
       </div>
     );

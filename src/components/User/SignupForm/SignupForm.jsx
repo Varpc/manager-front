@@ -1,15 +1,13 @@
 /* eslint react/no-string-refs:0 */
-import React, { Component } from 'react';
-import { Input, Button, Checkbox, Grid } from '@icedesign/base';
-import {
-  FormBinderWrapper as IceFormBinderWrapper,
-  FormBinder as IceFormBinder,
-  FormError as IceFormError,
-} from '@icedesign/form-binder';
+import { Button, Checkbox, Feedback, Grid, Input } from '@icedesign/base';
+import { FormBinder as IceFormBinder, FormBinderWrapper as IceFormBinderWrapper, FormError as IceFormError } from '@icedesign/form-binder';
 import IceIcon from '@icedesign/icon';
+import axios from 'axios';
+import React, { Component } from 'react';
 import './SignupForm.scss';
 
 const { Row, Col } = Grid;
+const Toast = Feedback.toast;
 
 export default class SignupForm extends Component {
   static displayName = 'SignupForm';
@@ -35,9 +33,33 @@ export default class SignupForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    let data = {};
     this.refs.form.validateAll((errors, values) => {
-      console.log('values', values);
+      data = values;
     });
+    if (data.account === undefined || data.account === '') {
+      return undefined;
+    }
+    if (data.password === undefined || data.password === '') {
+      return undefined;
+    }
+    axios
+      .post('/api/auth', {
+        username: data.account,
+        password: data.password,
+      })
+      .then((r) => {
+        this.props.onLogin(r.data);
+        Toast.success('登陆成功');
+      })
+      .catch((error) => {
+        // console.log(error.response);
+        if (error.response.data.message !== undefined) {
+          Toast.error(error.response.data.message);
+        } else {
+          Toast.error('网络错误，请稍后重试');
+        }
+      });
   };
 
   render() {
@@ -59,7 +81,7 @@ export default class SignupForm extends Component {
                     style={styles.inputIcon}
                   />
                   <IceFormBinder name="account" required message="必填">
-                    <Input maxLength={20} placeholder="会员名/邮箱/手机号" />
+                    <Input maxLength={20} placeholder="用户名" />
                   </IceFormBinder>
                 </Col>
                 <Col>
@@ -103,6 +125,7 @@ export default class SignupForm extends Component {
     );
   }
 }
+
 
 const styles = {
   formContainer: {

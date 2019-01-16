@@ -10,7 +10,7 @@ const asideMenuConfig = [
   },
   {
     name: '做题统计',
-    path: '',
+    path: '/problems',
     icon: 'chart',
   },
   {

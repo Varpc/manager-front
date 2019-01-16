@@ -10,7 +10,8 @@ export function reducer(state, action) {
   switch (action.type) {
     case USER_LOGOUT:
       return {
-        ...state, login: false,
+        ...state,
+        is_login: false,
       };
     default:
       return state;

@@ -8,6 +8,12 @@ export default class Home extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    // axios.get('/api/problems').then((response) => {
+    //   console.log(response.data);
+    // });
+  }
+
   render() {
     return (
       <div style={styles.pageContainer}>

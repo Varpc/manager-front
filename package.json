@@ -61,5 +61,11 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "title": "manager-front"
+  "title": "manager-front",
+  "proxyConfig": {
+    "/**": {
+      "enable": true,
+      "target": "http://127.0.0.1:5000/"
+    }
+  }
 }

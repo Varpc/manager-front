@@ -12,7 +12,7 @@ export default class ProblemsTable extends Component {
     super(props);
     this.state = {
       current: 1,
-      pageSize: 50,
+      pageSize: 30,
       isLoading: false,
       data: [],
       dataSource: [],
@@ -155,7 +155,7 @@ export default class ProblemsTable extends Component {
           pageSizeSelector="dropdown"
           pageSizePosition="start"
           onPageSizeChange={this.handlePageSizeChange}
-          pageSizeList={[50, 100, 150]}
+          pageSizeList={[30, 50, 100, 150]}
         />
       </div>
     );

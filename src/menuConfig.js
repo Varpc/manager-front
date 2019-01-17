@@ -20,7 +20,7 @@ const asideMenuConfig = [
   },
   {
     name: '近期比赛',
-    path: '#',
+    path: '/recentcontest',
     icon: 'clock',
   },
   {

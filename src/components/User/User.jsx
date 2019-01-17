@@ -78,7 +78,7 @@ class user extends React.Component {
               <IceImg
                 height={40}
                 width={40}
-                src={require('./images/avatar.png')}
+                src={image}
                 className="user-avatar"
               />
               <div className="user-profile">

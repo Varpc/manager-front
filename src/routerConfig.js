@@ -3,9 +3,12 @@
 // 变量名 routerConfig 为 iceworks 检测关键字，请不要修改名称
 
 import HeaderFooterLayout from './layouts/HeaderFooterLayout';
+import BlankLayout from './layouts/BlankLayout';
 import Home from './pages/Home';
 import Problems from './pages/Problems';
 import MyHome from './pages/MyHome';
+import Register from './pages/Register';
+import RecentContest from './pages/RecentContest';
 import NotFound from './pages/NotFound';
 
 
@@ -21,9 +24,19 @@ const routerConfig = [
     component: Problems,
   },
   {
+    path: '/recentcontest',
+    layout: HeaderFooterLayout,
+    component: RecentContest,
+  },
+  {
     path: '/myhome/:id',
     layout: HeaderFooterLayout,
     component: MyHome,
+  },
+  {
+    path: '/register',
+    layout: BlankLayout,
+    component: Register,
   },
   {
     path: '*',

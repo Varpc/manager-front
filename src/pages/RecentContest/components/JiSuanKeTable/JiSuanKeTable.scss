@@ -5,3 +5,27 @@
     }
   }
 }
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .table-title {
+    height: 20px;
+    line-height: 20px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 12px;
+    border-left: 4px solid #666;
+    margin-bottom: 15px;
+  }
+
+  .table-time {
+    height: 10px;
+    line-height: 10px;
+    font-size: 8px;
+    color: #666;
+  }
+}

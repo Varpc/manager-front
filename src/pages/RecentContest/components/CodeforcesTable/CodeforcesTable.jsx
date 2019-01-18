@@ -9,6 +9,7 @@ export default class CodeforcesTable extends React.Component {
     this.state = {
       isLoading: true,
       dataSource: [],
+      time: '',
     };
   }
 
@@ -33,6 +34,7 @@ export default class CodeforcesTable extends React.Component {
       .then((r) => {
         this.setState({
           dataSource: this.schemasData(r.data.data), //
+          time: r.data.time,
           isLoading: false,
         });
       })
@@ -53,7 +55,10 @@ export default class CodeforcesTable extends React.Component {
   render() {
     return (
       <div>
-        <div style={styles.tableTitle}>Codeforces</div>
+        <div className="table-header">
+          <div className="table-title">Codeforces</div>
+          <div className="table-time">{`更新于@${this.state.time}`}</div>
+        </div>
         <Table
           dataSource={this.state.dataSource}
           isLoading={this.state.isLoading}

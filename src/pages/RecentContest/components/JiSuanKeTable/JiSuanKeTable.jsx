@@ -9,6 +9,7 @@ export default class JiSuanKeTable extends React.Component {
     this.state = {
       isLoading: true,
       dataSource: [],
+      time: '',
     };
   }
 
@@ -33,6 +34,7 @@ export default class JiSuanKeTable extends React.Component {
       .then((r) => {
         this.setState({
           dataSource: this.schemasData(r.data.data), //
+          time: r.data.time,
           isLoading: false,
         });
       })
@@ -51,7 +53,10 @@ export default class JiSuanKeTable extends React.Component {
   render() {
     return (
       <div>
-        <div style={styles.tableTitle}>计蒜客</div>
+        <div className="table-header">
+          <div className="table-title">计蒜客</div>
+          <div className="table-time">{`更新于@${this.state.time}`}</div>
+        </div>
         <Table
           dataSource={this.state.dataSource}
           isLoading={this.state.isLoading}
@@ -73,16 +78,3 @@ export default class JiSuanKeTable extends React.Component {
     );
   }
 }
-
-const styles = {
-  tableTitle: {
-    height: '20px',
-    lineHeight: '20px',
-    color: '#333',
-    fontSize: '18px',
-    fontWeight: 'bold',
-    paddingLeft: '12px',
-    borderLeft: '4px solid #666',
-    marginBottom: '15px',
-  },
-};

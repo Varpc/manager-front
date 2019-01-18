@@ -18,7 +18,7 @@ export default class Home extends Component {
     return (
       <div style={styles.pageContainer}>
         <div style={styles.pageHead}>
-          <div style={styles.pageTitle}>药品调价</div>
+          <div style={styles.pageTitle}>公告</div>
         </div>
       </div>
     );

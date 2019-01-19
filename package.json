@@ -41,6 +41,7 @@
     "@icedesign/notification": "^0.2.2",
     "@icedesign/skin": "^0.1.0",
     "axios": "^0.18.0",
+    "braft-editor": "^2.2.5",
     "classnames": "^2.2.5",
     "foundation-symbol": "^0.1.3",
     "prop-types": "^15.5.8",

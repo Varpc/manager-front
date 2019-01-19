@@ -1,0 +1,18 @@
+.board-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 1000px;
+  padding: 0 16px;
+  margin: 10px auto;
+  .title {
+    height: 30px;
+    line-height: 30px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    border-left: #666 solid 5px;
+    padding-left: 12px;
+    margin-bottom: 20px;
+  }
+}

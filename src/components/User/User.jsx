@@ -23,8 +23,10 @@ class user extends React.Component {
     this.onLogin = this.onLogin.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.handleToMyHome = this.handleToMyHome.bind(this);
+    this.handleToAdminHome = this.handleToAdminHome.bind(this);
   }
 
+  // 登陆注册按钮
   onLoginClick() {
     this.setState({
       visible: !this.state.visible,
@@ -35,6 +37,7 @@ class user extends React.Component {
     this.props.history.push('/register');
   }
 
+  // 登陆登出时触发
   onLogin(data) {
     this.props.actions.login(data);
     this.setState({
@@ -47,9 +50,14 @@ class user extends React.Component {
     Toast.success('登出成功');
   }
 
+  // 去往指定页面
   handleToMyHome() {
     const url = `/myhome/${this.props.user.id}`;
     this.props.history.push(url);
+  }
+
+  handleToAdminHome() {
+    this.props.history.push('/admin/home');
   }
 
   render() {
@@ -59,8 +67,10 @@ class user extends React.Component {
     const { name, banji, image } = this.props.user;
     const manager = (
       <li className="user-profile-menu-item">
-        <FoundationSymbol type="ul-list" size="small" />
-        队伍管理
+        <div onClick={this.handleToAdminHome}>
+          <FoundationSymbol type="ul-list" size="small" />
+          队伍管理
+        </div>
       </li>
     );
     if (isLogin) {

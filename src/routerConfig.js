@@ -4,11 +4,14 @@
 
 import HeaderFooterLayout from './layouts/HeaderFooterLayout';
 import BlankLayout from './layouts/BlankLayout';
+import AsideLayout from './layouts/AsideLayout';
 import Home from './pages/Home';
+import AdminHome from './pages/AdminHome';
 import Problems from './pages/Problems';
 import MyHome from './pages/MyHome';
 import Register from './pages/Register';
 import RecentContest from './pages/RecentContest';
+import AdminBoard from './pages/AdminBoard';
 import NotFound from './pages/NotFound';
 
 
@@ -37,6 +40,21 @@ const routerConfig = [
     path: '/register',
     layout: BlankLayout,
     component: Register,
+  },
+  {
+    path: '/admin/home',
+    layout: AsideLayout,
+    component: AdminHome,
+  },
+  {
+    path: '/admin/board',
+    layout: AsideLayout,
+    component: AdminBoard,
+  },
+  {
+    path: '/admin/*',
+    layout: AsideLayout,
+    component: NotFound,
   },
   {
     path: '*',

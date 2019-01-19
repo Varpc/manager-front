@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 const LIGHT = require('./images/lightLogo.png');
 const DARK = require('./images/darkLogo.png');
 
+@withRouter
 export default class Logo extends Component {
+  handleToIndex = () => {
+    this.props.history.push('/');
+  };
+
   render() {
     const { isDark } = this.props;
     const logo = isDark ? DARK : LIGHT;
@@ -16,9 +22,12 @@ export default class Logo extends Component {
           textAlign: 'left',
         }}
       >
-        <a href="/" style={{ display: 'block', position: 'relative' }}>
+        <div
+          style={{ display: 'block', position: 'relative' }}
+          onClick={this.handleToIndex}
+        >
           <img src={logo} width="114" alt="logo" />
-        </a>
+        </div>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import Menu, { Item as MenuItem, SubMenu } from '@icedesign/menu';
 import FoundationSymbol from 'foundation-symbol';
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import headerMenuConfig from '../../menuConfig';
+import { headerMenuConfig } from '../../menuConfig';
 import User from '../User';
 import Logo from '../Logo';
 import './Header.scss';

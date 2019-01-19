@@ -84,16 +84,3 @@ export default class CodeforcesTable extends React.Component {
     );
   }
 }
-
-const styles = {
-  tableTitle: {
-    height: '20px',
-    lineHeight: '20px',
-    color: '#333',
-    fontSize: '18px',
-    fontWeight: 'bold',
-    paddingLeft: '12px',
-    borderLeft: '4px solid #666',
-    marginBottom: '15px',
-  },
-};

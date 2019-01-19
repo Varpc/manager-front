@@ -2,7 +2,7 @@
 // headerMenuConfig：头部导航配置
 // asideMenuConfig：侧边导航配置
 
-const asideMenuConfig = [
+const headerMenuConfig = [
   {
     name: '首页',
     path: '/',
@@ -45,6 +45,21 @@ const asideMenuConfig = [
   },
 ];
 
-const headerMenuConfig = asideMenuConfig;
+const adminAsideMenuConfig = [
+  {
+    name: '基本设置',
+    path: '/admin/base',
+    icon: 'shezhi',
+  },
+  {
+    name: '首页公告',
+    path: '/admin/board',
+    icon: 'directory',
+  },
+];
 
-export default headerMenuConfig;
+const adminHeaderMenuConfig = {
+
+};
+
+export { headerMenuConfig, adminAsideMenuConfig, adminHeaderMenuConfig };

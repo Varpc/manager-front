@@ -23,8 +23,8 @@ export default class HeaderFooterLayout extends Component {
 
 const styles = {
   mainContent: {
-    marginTop: '82px',
-    padding: '0 20px',
-    minHeight: 'calc(100vh - 62px - 76px - 20px)', // 使页脚动态的固定在底部，窗口高度减去header和footer的高度，-20px微调
+    marginTop: '62px',
+    padding: '0',
+    minHeight: 'calc(100vh - 62px - 76px)', // 使页脚动态的固定在底部，窗口高度减去header和footer的高度
   },
 };

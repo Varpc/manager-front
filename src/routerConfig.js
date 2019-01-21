@@ -11,9 +11,11 @@ import Problems from './pages/Problems';
 import MyHome from './pages/MyHome';
 import Register from './pages/Register';
 import RecentContest from './pages/RecentContest';
+import Posts from './pages/Posts';
+import PostsCreate from './pages/PostsCreate';
+
 import AdminBoard from './pages/AdminBoard';
 import NotFound from './pages/NotFound';
-
 
 const routerConfig = [
   {
@@ -30,6 +32,16 @@ const routerConfig = [
     path: '/recentcontest',
     layout: HeaderFooterLayout,
     component: RecentContest,
+  },
+  {
+    path: '/posts',
+    layout: HeaderFooterLayout,
+    component: Posts,
+  },
+  {
+    path: '/postscreate',
+    layout: HeaderFooterLayout,
+    component: PostsCreate,
   },
   {
     path: '/myhome/:id',

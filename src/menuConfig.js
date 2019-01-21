@@ -35,7 +35,7 @@ const headerMenuConfig = [
   },
   {
     name: '比赛总结',
-    path: '#',
+    path: '/posts',
     icon: 'edit',
   },
   {
@@ -52,14 +52,12 @@ const adminAsideMenuConfig = [
     icon: 'shezhi',
   },
   {
-    name: '首页公告',
+    name: '首页设置',
     path: '/admin/board',
     icon: 'directory',
   },
 ];
 
-const adminHeaderMenuConfig = {
-
-};
+const adminHeaderMenuConfig = {};
 
 export { headerMenuConfig, adminAsideMenuConfig, adminHeaderMenuConfig };

@@ -12,7 +12,7 @@ export default class Board extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('/api/admin/board').then((r) => {
+    axios.get('/api/admin/home/board').then((r) => {
       this.setState({
         html: r.data.html,
       });

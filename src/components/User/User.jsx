@@ -1,18 +1,18 @@
-import { Balloon, Button, Icon, Dialog, Feedback } from '@icedesign/base';
+import { Balloon, Button, Dialog, Feedback, Icon } from '@icedesign/base';
 import IceImg from '@icedesign/img';
 import FoundationSymbol from 'foundation-symbol';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../utils/userRedux/actions';
+import { mapUserReducerToProps, mapUserStateToProps } from '../../utils/userRedux/mapToPrpos';
 import SignupForm from './SignupForm';
 import './User.scss';
 
 const Toast = Feedback.toast;
 
+@connect(mapUserStateToProps, mapUserReducerToProps)
 @withRouter
-class user extends React.Component {
+export default class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -157,21 +157,3 @@ class user extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    user: state.user,
-  };
-}
-
-function mapReducerToProps(reducer) {
-  return {
-    actions: bindActionCreators({ ...actions }, reducer),
-  };
-}
-
-const User = connect(
-  mapStateToProps,
-  mapReducerToProps
-)(user);
-export default User;

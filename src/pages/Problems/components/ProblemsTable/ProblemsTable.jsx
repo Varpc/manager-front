@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Feedback } from '@icedesign/base';
+import { Table, Pagination, Feedback, Search, Button } from '@icedesign/base';
 import axios from 'axios';
 import './ProblemsTable.scss';
 
@@ -32,7 +32,8 @@ export default class ProblemsTable extends Component {
       .then((r) => {
         this.state.data = r.data.data;
         this.setState({
-          dataSource: this.state.data,
+          data: this.state.data.concat(), // 数组深拷贝
+          dataSource: this.state.data.concat(),
           isLoading: false,
         });
       })
@@ -136,12 +137,61 @@ export default class ProblemsTable extends Component {
     );
   }
 
+  setDataSource = (key) => {
+    const ans = [];
+    this.state.data.map((item) => {
+      if (key === '' || item.name.includes(key) || item.banji.includes(key)) {
+        ans.push(item);
+      }
+      return item.id; // 处理警告
+    });
+    this.setState({
+      dataSource: ans,
+    });
+  };
+
+  onSerchChange = (value) => {
+    this.setDataSource(value);
+  };
+
+  onSearch = (value) => {
+    this.setDataSource(value.key);
+  };
+
+  // 设置dataSource为只显示现役
+  setDataSourceNow = () => {
+    const ans = [];
+    this.state.data.map((item) => {
+      if (item.status === 1) {
+        ans.push(item);
+      }
+      return item.id;
+    });
+    this.setState({
+      dataSource: ans,
+    });
+  }
+
+  // 设置dataSource为全部
+  setDataSourceAll = () => {
+    this.setDataSource('');
+  }
   render() {
     return (
       <div>
         <div className="page-header">
           <div className="page-header-title">
             做题统计<small>上次更新: 3小时前</small>
+          </div>
+        </div>
+        <hr />
+        <div className="search-header">
+          <Search onChange={this.onSerchChange} onSearch={this.onSearch} placeholder="搜索" />
+          <div className="buttons">
+            <Button onClick={this.setDataSourceAll} className="button">查看全部</Button>
+            <Button type="primary" onClick={this.setDataSourceNow}>
+              只看现役
+            </Button>
           </div>
         </div>
         {this.tableRender()}

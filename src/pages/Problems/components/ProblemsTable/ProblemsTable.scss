@@ -64,3 +64,17 @@
     }
   }
 }
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin: 10px 50px 20px 20px;
+  .buttons {
+    top: 0px;
+    .button {
+      margin-top: 0px;
+      margin-right: 10px;
+    }
+  }
+}

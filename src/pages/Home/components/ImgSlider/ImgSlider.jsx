@@ -1,9 +1,8 @@
 import React from 'react';
 import { Slider, Icon } from '@icedesign/base';
+import axios from 'axios';
 import Img from '@icedesign/img';
 import './ImgSlider.scss';
-
-const image = require('./image/image.jpg');
 
 const config = {
   variableWidth: true,
@@ -41,7 +40,26 @@ const CustomNextArrow = (props) => {
 };
 
 export default class ImgSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: [],
+    };
+  }
+
+  componentWillMount() {
+    axios
+      .get('/api/admin/home/image')
+      .then((r) => {
+        this.setState({
+          images: r.data.data,
+        });
+      })
+      .catch();
+  }
+
   render() {
+    console.log(this.state.images);
     return (
       <div style={{ width: '100%', margin: '0', padding: '0' }}>
         <Slider
@@ -49,28 +67,13 @@ export default class ImgSlider extends React.Component {
           nextArrow={<CustomNextArrow />}
           prevArrow={<CustomPrevArrow />}
         >
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          <div style={{ width: '1000px' }}>
-            <Img width={1000} height={560} src={image} />
-          </div>
-          
+          {this.state.images.map((url, ind) => {
+            return (
+              <div key={ind} style={{ width: '1000px' }}>
+                <Img width={1000} height={560} src={url.imgURL} alt={url.name} />
+              </div>
+            );
+          })}
         </Slider>
       </div>
     );

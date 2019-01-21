@@ -3,7 +3,8 @@ import Layout from '@icedesign/layout';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-import './HeaderFooterLayout.scss';
+import './scss/light.scss';
+// import './HeaderFooterLayout.scss';
 
 export default class HeaderFooterLayout extends Component {
   static propTypes = {};

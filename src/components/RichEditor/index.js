@@ -1,3 +1,7 @@
+import BraftEditor from 'braft-editor';
 import RichEditor from './RichEditor';
 
-export default RichEditor;
+const createEditorState = BraftEditor.createEditorState;
+
+export { RichEditor, createEditorState };
+

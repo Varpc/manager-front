@@ -1,15 +1,14 @@
 import { Button, Feedback } from '@icedesign/base';
 import axios from 'axios';
 import React from 'react';
-import BraftEditor from 'braft-editor';
-import RichEditor from '../../../../components/RichEditor';
+import { RichEditor, createEditorState } from '../../../../components/RichEditor';
 
 export default class HomeBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       url: '/api/admin/home/board',
-      editorState: BraftEditor.createEditorState(''),
+      editorState: createEditorState(''),
     };
   }
 
@@ -18,7 +17,7 @@ export default class HomeBoard extends React.Component {
       .get(this.state.url)
       .then((r) => {
         this.setState({
-          editorState: BraftEditor.createEditorState(r.data.html),
+          editorState: createEditorState(r.data.html),
         });
       })
       .catch((e) => {
@@ -58,7 +57,6 @@ export default class HomeBoard extends React.Component {
         <Button
           type="primary"
           onClick={this.handleSubmit}
-          styple={{ padding: '20px' }}
         >
           提交
         </Button>

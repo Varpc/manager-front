@@ -2,7 +2,7 @@ import { Grid, Icon, Pagination, Dialog, Feedback } from '@icedesign/base';
 import IceContainer from '@icedesign/container';
 import React, { Component } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   mapUserStateToProps,
@@ -120,7 +120,9 @@ export default class Lists extends Component {
               }
               return (
                 <div style={styles.item} key={index}>
-                  <h6 style={styles.title}>{`  ${item.title}`}</h6>
+                  <Link to={`/post/${item.post_id}`}>
+                    <h5 style={styles.title}>{`  ${item.title}`}</h5>
+                  </Link>
                   <Row>
                     <Col l="16">
                       <div style={styles.metaWrap}>

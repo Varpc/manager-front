@@ -1,0 +1,18 @@
+.show-post-container {
+  width: 1000px;
+  padding: 0 16px;
+  margin: 15px auto;
+  .show-post-author {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: 10px #555;
+  }
+  .show-post-body {
+    margin-top: 15px;
+    // font-size: 14px;
+    // line-height: 18px;
+    // letter-spacing: 2px;
+  }
+}

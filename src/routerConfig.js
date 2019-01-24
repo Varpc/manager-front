@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import RecentContest from './pages/RecentContest';
 import Posts from './pages/Posts';
 import PostsCreate from './pages/PostsCreate';
+import PostsShow from './pages/ShowPost';
 
 import AdminBoard from './pages/AdminBoard';
 import NotFound from './pages/NotFound';
@@ -42,6 +43,11 @@ const routerConfig = [
     path: '/postscreate',
     layout: HeaderFooterLayout,
     component: PostsCreate,
+  },
+  {
+    path: '/post/:post_id',
+    layout: HeaderFooterLayout,
+    component: PostsShow,
   },
   {
     path: '/myhome/:id',

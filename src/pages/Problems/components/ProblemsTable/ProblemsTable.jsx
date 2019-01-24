@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Pagination, Feedback, Search, Button } from '@icedesign/base';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './ProblemsTable.scss';
 
@@ -104,6 +105,14 @@ export default class ProblemsTable extends Component {
     }
   };
 
+  renderName = (value) => {
+    return (
+      <Link to={`/myhome/${value.user_id}`}>
+        {value.name}
+      </Link>
+    );
+  }
+
   tableRender() {
     const { dataSource } = this.state;
     const from = (this.state.current - 1) * this.state.pageSize;
@@ -120,9 +129,9 @@ export default class ProblemsTable extends Component {
         hasBorder={false}
         className="custom-table"
       >
-        <Table.Column title="序列号" dataIndex="id" sortable />
-        <Table.Column title="姓名" dataIndex="name" />
-        <Table.Column title="班级" dataIndex="banji" />
+        <Table.Column title="序列号" dataIndex="user.user_id" />
+        <Table.Column title="姓名" dataIndex="user" cell={this.renderName} />
+        <Table.Column title="班级" dataIndex="user.banji" />
         <Table.Column title="总计" dataIndex="sum" sortable />
         <Table.Column title="蓝书" dataIndex="blue_book" />
         <Table.Column title="紫书" dataIndex="purple_book" />
@@ -132,7 +141,7 @@ export default class ProblemsTable extends Component {
         <Table.Column title="POJ" dataIndex="poj" />
         <Table.Column title="cf" dataIndex="cf" />
         <Table.Column title="bc" dataIndex="bc" />
-        <Table.Column title="状态" dataIndex="status" cell={this.renderState} />
+        <Table.Column title="状态" dataIndex="user.status" cell={this.renderState} />
       </Table>
     );
   }
@@ -140,7 +149,7 @@ export default class ProblemsTable extends Component {
   setDataSource = (key) => {
     const ans = [];
     this.state.data.map((item) => {
-      if (key === '' || item.name.includes(key) || item.banji.includes(key)) {
+      if (key === '' || item.user.name.includes(key) || item.user.banji.includes(key)) {
         ans.push(item);
       }
       return item.id; // 处理警告
@@ -162,7 +171,7 @@ export default class ProblemsTable extends Component {
   setDataSourceNow = () => {
     const ans = [];
     this.state.data.map((item) => {
-      if (item.status === 1) {
+      if (item.user.status === 1) {
         ans.push(item);
       }
       return item.id;

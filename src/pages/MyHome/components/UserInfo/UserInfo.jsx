@@ -28,28 +28,30 @@ export default class UserInfo extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const id = newProps.match.params.id;
-    this.setState({
-      userId: id,
-    });
-    axios
-      .get(`/api/user/${id}`)
-      .then((r) => {
-        this.setState({
-          image: r.data.image,
-          name: r.data.name,
-          banji: r.data.banji,
-          blog: r.data.blog,
-          status: r.data.status,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-        Feedback.toast.error('加载失败');
-      });
+    this.state.userId = newProps.match.params.id;
+    this.componentDidMount();
+    // const id = newProps.userId;
+    // this.setState({
+    //   userId: id,
+    // });
+    // axios
+    //   .get(`/api/user/${id}`)
+    //   .then((r) => {
+    //     this.setState({
+    //       image: r.data.image,
+    //       name: r.data.name,
+    //       banji: r.data.banji,
+    //       blog: r.data.blog,
+    //       status: r.data.status,
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //     Feedback.toast.error('加载失败');
+    //   });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get(`/api/user/${this.state.userId}`)
       .then((r) => {
@@ -68,7 +70,7 @@ export default class UserInfo extends React.Component {
   }
 
   handleOnClick = () => {
-    this.props.history.push('设置资料');
+    this.props.history.push('#');
   };
 
   renderStatus = () => {

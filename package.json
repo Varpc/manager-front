@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@alifd/next": "^1.11.8",
+    "@antv/data-set": "^0.10.1",
     "@icedesign/base": "^0.2.0",
     "@icedesign/container": "^0.1.0",
     "@icedesign/form-binder": "^1.0.3",
@@ -41,6 +42,7 @@
     "@icedesign/notification": "^0.2.2",
     "@icedesign/skin": "^0.1.0",
     "axios": "^0.18.0",
+    "bizcharts": "^3.4.3",
     "braft-editor": "^2.2.5",
     "classnames": "^2.2.5",
     "foundation-symbol": "^0.1.3",

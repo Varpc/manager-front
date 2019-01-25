@@ -1,12 +1,13 @@
 import React from 'react';
+import Chart from './components/Chart';
 import UserInfo from './components/UserInfo';
+import List from './components/List';
 import './MyHome.scss';
 
 export default class MyHome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -15,7 +16,15 @@ export default class MyHome extends React.Component {
       // 在子组件中使用componentWillReceiveProps()，当props改变时会自动调用该函数
       // 但是现在url的参数是直接作用在page(当前页面组件)上的，为了让子组件监测到props
       // 的变化，将props全部传给子组件
-      <UserInfo {...this.props} />
+      <div>
+        <UserInfo {...this.props} />
+        <Chart {...this.props} />
+        <div className="list-container">
+          <div className="list-item">
+            <List {...this.props} />
+          </div>
+        </div>
+      </div>
     );
   }
 }

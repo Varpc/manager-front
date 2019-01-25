@@ -40,9 +40,22 @@ export default class Lists extends Component {
     });
   };
 
+  componentWillReceiveProps(newProps) {
+    axios
+      .get(`/api/user/${newProps.match.params.id}/posts`)
+      .then((r) => {
+        this.setState({
+          dataSource: r.data.data,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   componentDidMount() {
     axios
-      .get('/api/posts')
+      .get(`/api/user/${this.props.match.params.id}/posts`)
       .then((r) => {
         this.setState({
           dataSource: r.data.data,
@@ -94,6 +107,7 @@ export default class Lists extends Component {
     return (
       <div>
         <IceContainer>
+          <div style={{ marginBottom: '10px' }}>我的总结</div>
           <div style={styles.contentList}>
             {data.map((item, index) => {
               let edit;
@@ -126,14 +140,10 @@ export default class Lists extends Component {
                   <Row>
                     <Col l="16">
                       <div style={styles.metaWrap}>
-                        <div style={styles.meta}>
+                        {/* <div style={styles.meta}>
                           <span>作者: </span>
-                          <span>
-                            <Link to={`/myhome/${item.user_id}`}>
-                              {item.author}
-                            </Link>
-                          </span>
-                        </div>
+                          <span>{item.author}</span>
+                        </div> */}
                         <div style={styles.meta}>
                           <span>时间: </span>
                           <span>{item.time}</span>

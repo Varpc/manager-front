@@ -1,0 +1,19 @@
+.chart-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20px;
+  .charts-container {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+  }
+  .line-chart-container {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+  }
+}

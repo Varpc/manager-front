@@ -59,7 +59,6 @@ export default class ImgSlider extends React.Component {
   }
 
   render() {
-    console.log(this.state.images);
     return (
       <div style={{ width: '100%', margin: '0', padding: '0' }}>
         <Slider

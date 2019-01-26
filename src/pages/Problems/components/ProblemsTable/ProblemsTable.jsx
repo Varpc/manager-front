@@ -14,17 +14,11 @@ export default class ProblemsTable extends Component {
     this.state = {
       current: 1,
       pageSize: 30,
-      isLoading: false,
+      isLoading: true,
       data: [],
       dataSource: [],
     };
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
-      isLoading: true,
-    });
   }
 
   componentDidMount() {

@@ -1,0 +1,74 @@
+.editinfo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  .content {
+    width: 1000px;
+    margin-top: 20px;
+    .content-header {
+      width: 100%;
+      height: 100px;
+      background-color: #999;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    .content-head-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 15px;
+      border: 5px solid #fff;
+      margin-left: 20px;
+      margin-top: -25px;
+      z-index: 1;
+    }
+
+    .content-user {
+      display: flex;
+      justify-content: space-between;
+      align-content: flex-end;
+      background: #fff;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      // height: 150px;
+    }
+
+    .content-user-info {
+      /* padding-top: 16px;
+      padding-left: 32px; */
+      flex: 1; // 填充剩余的宽度
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-left: 32px;
+      margin-right: 32px;
+
+      h1 {
+        display: inline;
+      }
+
+      .content-user-button {
+        margin-top:55px;
+        .content-user-button-style {
+          padding: 8px 15px 8px 15px;
+          font-size: 14px;
+          color: #0084ff;
+          border-color: #0084ff;
+          border: 1px solid;
+          border-radius: 3px;
+          text-align: center;
+          background-color: #fff;
+        }
+        .content-user-button-style:hover {
+          background-color: #ecf4fc;
+        }
+      }
+    }
+  }
+}

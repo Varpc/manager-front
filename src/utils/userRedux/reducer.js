@@ -1,5 +1,6 @@
 import { reducer as userLoginReducer } from './userLogin';
 import { reducer as userLogoutReducer } from './userLogout';
+import { reducer as updateInfoReducer } from './updateInfo';
 
 const initState = {
   is_login: false,
@@ -16,6 +17,7 @@ const initState = {
 const reducers = [
   userLoginReducer,
   userLogoutReducer,
+  updateInfoReducer,
 ];
 
 export default function reducer(state = initState, action) {

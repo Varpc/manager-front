@@ -15,7 +15,7 @@ const headerMenuConfig = [
   },
   {
     name: '比赛统计',
-    path: '#',
+    path: '/bisai',
     icon: 'content',
   },
   {
@@ -25,12 +25,12 @@ const headerMenuConfig = [
   },
   {
     name: '集训管理',
-    path: '#',
+    path: '/jixun',
     icon: 'cascades',
   },
   {
     name: '现役队伍',
-    path: '#',
+    path: '/groups',
     icon: 'yonghu',
   },
   {
@@ -40,7 +40,7 @@ const headerMenuConfig = [
   },
   {
     name: '报销申请',
-    path: '#',
+    path: '/shenqing',
     icon: 'shop',
   },
 ];

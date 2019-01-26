@@ -14,6 +14,7 @@ import RecentContest from './pages/RecentContest';
 import Posts from './pages/Posts';
 import PostsCreate from './pages/PostsCreate';
 import PostsShow from './pages/ShowPost';
+import EditInfo from './pages/EditInfo';
 
 import AdminBoard from './pages/AdminBoard';
 import NotFound from './pages/NotFound';
@@ -53,6 +54,11 @@ const routerConfig = [
     path: '/myhome/:id',
     layout: HeaderFooterLayout,
     component: MyHome,
+  },
+  {
+    path: '/editinfo/:id',
+    layout: HeaderFooterLayout,
+    component: EditInfo,
   },
   {
     path: '/register',

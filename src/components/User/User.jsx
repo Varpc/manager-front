@@ -56,6 +56,11 @@ export default class User extends React.Component {
     this.props.history.push(url);
   }
 
+  handleToEditInfo = () => {
+    const url = `/editinfo/${this.props.user.id}`;
+    this.props.history.push(url);
+  }
+
   handleToAdminHome() {
     this.props.history.push('/admin/home');
   }
@@ -117,8 +122,10 @@ export default class User extends React.Component {
             </li>
             {isAdmin && manager}
             <li className="user-profile-menu-item">
-              <FoundationSymbol type="repair" size="small" />
-              信息设置
+              <div onClick={this.handleToEditInfo}>
+                <FoundationSymbol type="repair" size="small" />
+                信息设置
+              </div>
             </li>
             <li className="user-profile-menu-item">
               <div onClick={this.onLogout}>

@@ -7,7 +7,7 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      html: undefined,
+      html: '',
     };
   }
 
@@ -25,7 +25,6 @@ export default class Board extends React.Component {
   }
 
   render() {
-    console.log(this.state.html);
     return (
       <IceContainer className="board-container">
         <div>

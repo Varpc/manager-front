@@ -69,9 +69,10 @@ export default class UserInfo extends React.Component {
       });
   }
 
-  handleOnClick = () => {
-    this.props.history.push('#');
-  };
+  handleToEditInfo = () => {
+    const url = `/editinfo/${this.state.userId}`;
+    this.props.history.push(url);
+  }
 
   renderStatus = () => {
     const status = this.state.status;
@@ -138,7 +139,7 @@ export default class UserInfo extends React.Component {
                   <button
                     type="button"
                     className="content-user-button-style"
-                    onClick={this.handleOnClick}
+                    onClick={this.handleToEditInfo}
                   >
                     编辑个人资料
                   </button>

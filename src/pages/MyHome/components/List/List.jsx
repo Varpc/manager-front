@@ -9,6 +9,8 @@ import {
   mapUserReducerToProps,
 } from '../../../../utils/userRedux/mapToPrpos';
 
+import './List.scss';
+
 const { Row, Col } = Grid;
 
 @connect(
@@ -134,9 +136,16 @@ export default class Lists extends Component {
               }
               return (
                 <div style={styles.item} key={index}>
-                  <Link to={`/post/${item.post_id}`}>
-                    <h5 style={styles.title}>{`  ${item.title}`}</h5>
-                  </Link>
+                  <Row>
+                    <Link to={`/post/${item.post_id}`}>
+                      <h5 style={styles.title}>{`  ${item.title}`}</h5>
+                    </Link>
+                    {item.need_edit && (
+                      <div className="list-red">
+                        <div className="list-red-text">需要修改</div>
+                      </div>
+                    )}
+                  </Row>
                   <Row>
                     <Col l="16">
                       <div style={styles.metaWrap}>

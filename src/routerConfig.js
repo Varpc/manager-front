@@ -15,6 +15,8 @@ import Posts from './pages/Posts';
 import PostsCreate from './pages/PostsCreate';
 import PostsShow from './pages/ShowPost';
 import EditInfo from './pages/EditInfo';
+import Groups from './pages/Groups';
+import EditPost from './pages/EditPost'
 
 import AdminBoard from './pages/AdminBoard';
 import NotFound from './pages/NotFound';
@@ -41,6 +43,11 @@ const routerConfig = [
     component: Posts,
   },
   {
+    path: '/groups',
+    layout: HeaderFooterLayout,
+    component: Groups,
+  },
+  {
     path: '/postscreate',
     layout: HeaderFooterLayout,
     component: PostsCreate,
@@ -49,6 +56,11 @@ const routerConfig = [
     path: '/post/:post_id',
     layout: HeaderFooterLayout,
     component: PostsShow,
+  },
+  {
+    path: '/post/:post_id/edit',
+    layout: HeaderFooterLayout,
+    component: EditPost,
   },
   {
     path: '/myhome/:id',

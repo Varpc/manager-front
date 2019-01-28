@@ -8,6 +8,7 @@ import {
   mapUserStateToProps,
   mapUserReducerToProps,
 } from '../../../../utils/userRedux/mapToPrpos';
+import './Lists.scss';
 
 const { Row, Col } = Grid;
 
@@ -82,6 +83,10 @@ export default class Lists extends Component {
     });
   };
 
+  handleEditPost = (postId) => {
+    this.props.history.push(`/post/${postId}/edit`);
+  };
+
   render() {
     const { dataSource } = this.state;
     const from = (this.state.current - 1) * this.state.pageSize;
@@ -100,7 +105,11 @@ export default class Lists extends Component {
               if (item.user_id === userId) {
                 edit = (
                   <div style={styles.operWrap}>
-                    <div style={styles.oper}>
+                    <div
+                      style={styles.oper}
+                      // eslint-disable-next-line react/jsx-no-bind
+                      onClick={this.handleEditPost.bind(this, item.post_id)}
+                    >
                       <Icon size="xs" type="edit" style={styles.operIcon} />
                       <span style={styles.operText}>编辑</span>
                     </div>
@@ -120,9 +129,16 @@ export default class Lists extends Component {
               }
               return (
                 <div style={styles.item} key={index}>
-                  <Link to={`/post/${item.post_id}`}>
-                    <h5 style={styles.title}>{`  ${item.title}`}</h5>
-                  </Link>
+                  <Row>
+                    <Link to={`/post/${item.post_id}`}>
+                      <h5 style={styles.title}>{`  ${item.title}`}</h5>
+                    </Link>
+                    {item.need_edit && (
+                      <div className="list-red">
+                        <div className="list-red-text">需要修改</div>
+                      </div>
+                    )}
+                  </Row>
                   <Row>
                     <Col l="16">
                       <div style={styles.metaWrap}>

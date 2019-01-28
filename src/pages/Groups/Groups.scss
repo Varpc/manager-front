@@ -1,0 +1,54 @@
+.groups-page {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .groups-container {
+    width: 1000px;
+    .ice-container {
+      display: flex;
+      justify-content: center;
+      .items {
+        width: 900px;
+      }
+    }
+  }
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    .page-title {
+      height: 30px;
+      line-height: 30px;
+      font-size: 26px;
+      font-weight: bold;
+      color: #333;
+      border-left: #666 solid 5px;
+      padding-left: 12px;
+      margin-bottom: 0px;
+    }
+  }
+}
+.card {
+  width: 900px;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  padding-top: 26px;
+  .content {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    .score {
+      font-size: 40px;
+      font-weight: bold;
+      padding: 0;
+      color: #0997F7;
+    }
+  }
+}
+
+.card:hover {
+  box-shadow: 4px 4px 20px 0px RGB(102, 102, 102, 0.3);
+}

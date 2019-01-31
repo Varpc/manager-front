@@ -17,7 +17,6 @@ export default class Groups extends React.Component {
     axios
       .get('/api/groups')
       .then((r) => {
-        console.log(r.data);
         this.setState({
           dataSource: r.data.data,
         });
@@ -51,7 +50,7 @@ export default class Groups extends React.Component {
                         成员：
                         {item.user.map((user) => {
                           return (
-                            <Link to={`/myhome/${user.id}`}>
+                            <Link to={`/myhome/${user.id}`} key={user.id}>
                               {user.name}&nbsp;
                             </Link>
                           );

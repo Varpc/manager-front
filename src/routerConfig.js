@@ -6,7 +6,6 @@ import HeaderFooterLayout from './layouts/HeaderFooterLayout';
 import BlankLayout from './layouts/BlankLayout';
 import AsideLayout from './layouts/AsideLayout';
 import Home from './pages/Home';
-import AdminHome from './pages/AdminHome';
 import Problems from './pages/Problems';
 import MyHome from './pages/MyHome';
 import Register from './pages/Register';
@@ -16,12 +15,15 @@ import PostsCreate from './pages/PostsCreate';
 import PostsShow from './pages/ShowPost';
 import EditInfo from './pages/EditInfo';
 import Groups from './pages/Groups';
-import EditPost from './pages/EditPost'
+import EditPost from './pages/EditPost';
 
+import AdminHome from './pages/AdminHome';
 import AdminBoard from './pages/AdminBoard';
+import AdminPosts from './pages/AdminPosts';
+
 import NotFound from './pages/NotFound';
 
-const routerConfig = [
+const userRouterConfig = [
   {
     path: '/',
     layout: HeaderFooterLayout,
@@ -77,6 +79,9 @@ const routerConfig = [
     layout: BlankLayout,
     component: Register,
   },
+];
+
+const adminRouterConfig = [
   {
     path: '/admin/home',
     layout: AsideLayout,
@@ -88,10 +93,20 @@ const routerConfig = [
     component: AdminBoard,
   },
   {
+    path: '/admin/posts',
+    layout: AsideLayout,
+    component: AdminPosts,
+  },
+  {
     path: '/admin/*',
     layout: AsideLayout,
     component: NotFound,
   },
+];
+
+const routerConfig = [
+  ...userRouterConfig,
+  ...adminRouterConfig,
   {
     path: '*',
     layout: HeaderFooterLayout,

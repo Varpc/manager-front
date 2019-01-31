@@ -1,0 +1,21 @@
+.admin-posts-container {
+  padding: 0 16px;
+  margin-top: 15px;
+}
+
+.admin-posts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .admin-posts-title {
+    height: 30px;
+    line-height: 30px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    border-left: #666 solid 5px;
+    padding-left: 12px;
+    margin-bottom: 0px;
+  }
+}

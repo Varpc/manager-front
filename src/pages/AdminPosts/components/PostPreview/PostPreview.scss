@@ -1,15 +1,15 @@
-.show-post-container {
+.post-preview-container {
   width: 1000px;
   padding: 0 16px;
-  margin: 15px auto;
-  .show-post-author {
+  margin-top: 15px;
+  .post-preview-author {
     margin-top: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font: 10px #555;
   }
-  .show-post-body {
+  .post-preview-body {
     margin-top: 15px;
   }
 }

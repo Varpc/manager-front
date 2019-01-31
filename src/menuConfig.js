@@ -56,6 +56,16 @@ const adminAsideMenuConfig = [
     path: '/admin/board',
     icon: 'directory',
   },
+  {
+    name: '总结管理',
+    path: '/admin/posts',
+    icon: 'content',
+  },
+  {
+    name: '队伍管理',
+    path: '/admin/groups',
+    icon: 'fans',
+  },
 ];
 
 const adminHeaderMenuConfig = {};

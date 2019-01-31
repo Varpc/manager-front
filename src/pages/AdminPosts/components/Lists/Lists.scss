@@ -1,0 +1,22 @@
+.list-red {
+  margin-left: 6px;
+  display: inline;
+  height: 20px;
+  color: #f26383;
+  border: 1px solid #f26383;
+  border-radius: 12px;
+  background: #fff;
+  .list-red-text {
+    display: inline;
+    color: #f26383;
+    padding: 1px 5px 1px 5px;
+  }
+}
+
+a:visited {
+  color: #5485F7;
+}
+
+a:link {
+  color: #5485F7;
+}

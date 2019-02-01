@@ -1,0 +1,43 @@
+.admin-config-container {
+  margin-top: 15px;
+  padding: 0 16px;
+  .admin-config-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .admin-config-title {
+      height: 30px;
+      line-height: 30px;
+      font-size: 26px;
+      font-weight: bold;
+      color: #333;
+      border-left: #666 solid 5px;
+      padding-left: 12px;
+      margin-bottom: 0px;
+    }
+  }
+  .config-container {
+    margin-top: 15px;
+    margin-right: 10px;
+  }
+  .input-container {
+    margin-bottom: 5px;
+    .span {
+      width: 200px;
+      margin-right: 10px;
+      display: inline-block;
+      text-align: right;
+    }
+    .info-span {
+      display: inline-block;
+      margin-left: 10px;
+      text-align: left;
+    }
+    .input {
+      width: 80px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+}

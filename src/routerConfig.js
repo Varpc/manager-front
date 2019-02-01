@@ -17,6 +17,7 @@ import EditInfo from './pages/EditInfo';
 import Groups from './pages/Groups';
 import EditPost from './pages/EditPost';
 
+import AdminConfig from './pages/AdminConfig';
 import AdminHome from './pages/AdminHome';
 import AdminBoard from './pages/AdminBoard';
 import AdminPosts from './pages/AdminPosts';
@@ -82,6 +83,11 @@ const userRouterConfig = [
 ];
 
 const adminRouterConfig = [
+  {
+    path: '/admin/config',
+    layout: AsideLayout,
+    component: AdminConfig,
+  },
   {
     path: '/admin/home',
     layout: AsideLayout,

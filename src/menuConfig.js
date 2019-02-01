@@ -48,7 +48,7 @@ const headerMenuConfig = [
 const adminAsideMenuConfig = [
   {
     name: '基本设置',
-    path: '/admin/base',
+    path: '/admin/config',
     icon: 'shezhi',
   },
   {

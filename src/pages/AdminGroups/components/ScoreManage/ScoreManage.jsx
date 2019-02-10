@@ -23,7 +23,6 @@ export default class ScoreManage extends React.Component {
           dataSource: r.data.data,
           isLoading: false,
         });
-        console.log(r.data.data);
       })
       .catch((e) => {
         console.log(e);
@@ -88,7 +87,6 @@ export default class ScoreManage extends React.Component {
       //   });
 
       /** 以下用于测试 */
-      console.log(num, type);
       this.setState({
         dataSource: this.state.dataSource.map((item) => {
           if (item.group_id === id) {

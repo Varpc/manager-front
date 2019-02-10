@@ -18,3 +18,15 @@
     }
   }
 }
+
+.row {
+  margin-bottom: 20px;
+  .form-error {
+    display: block;
+    margin-top: 10px;
+    margin-left: 70px;
+  }
+  .input {
+    width: 1000px;
+  }
+}

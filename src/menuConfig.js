@@ -23,11 +23,11 @@ const headerMenuConfig = [
     path: '/recentcontest',
     icon: 'clock',
   },
-  {
-    name: '集训管理',
-    path: '/jixun',
-    icon: 'cascades',
-  },
+  // {
+  //   name: '集训管理',
+  //   path: '/jixun',
+  //   icon: 'cascades',
+  // },
   {
     name: '现役队伍',
     path: '/groups',
@@ -38,11 +38,11 @@ const headerMenuConfig = [
     path: '/posts',
     icon: 'edit',
   },
-  {
-    name: '报销申请',
-    path: '/shenqing',
-    icon: 'shop',
-  },
+  // {
+  //   name: '报销申请',
+  //   path: '/shenqing',
+  //   icon: 'shop',
+  // },
 ];
 
 const adminAsideMenuConfig = [

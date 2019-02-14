@@ -22,6 +22,7 @@ import AdminHome from './pages/AdminHome';
 import AdminBoard from './pages/AdminBoard';
 import AdminPosts from './pages/AdminPosts';
 import AdminGroups from './pages/AdminGroups';
+import AdminUsers from './pages/AdminUsers';
 
 import NotFound from './pages/NotFound';
 
@@ -103,6 +104,11 @@ const adminRouterConfig = [
     path: '/admin/posts',
     layout: AsideLayout,
     component: AdminPosts,
+  },
+  {
+    path: '/admin/users',
+    layout: AsideLayout,
+    component: AdminUsers,
   },
   {
     path: '/admin/groups',

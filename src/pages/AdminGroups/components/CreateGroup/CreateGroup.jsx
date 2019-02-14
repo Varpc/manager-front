@@ -5,6 +5,7 @@ import {
   FormError,
 } from '@icedesign/form-binder';
 import { Input, Grid, Button, Feedback } from '@icedesign/base';
+import axios from 'axios';
 import './CreateGroup.scss';
 
 const { Row, Col } = Grid;
@@ -25,13 +26,23 @@ export default class CreateGroup extends React.Component {
     // eslint-disable-next-line react/no-string-refs
     const { validateFields } = this.refs.form;
 
-    validateFields((errors, /* values */) => {
+    validateFields((errors, values) => {
       // console.log({ errors });
       // console.log(values);
 
       if (!errors) {
-        /** 此处处理登陆逻辑 */
-        Feedback.toast.success('登录成功');
+        axios.post('/api/admin/groups', {
+          ...values,
+        }).then(() => {
+          Feedback.toast.success('创建成功');
+        }).catch((e) => {
+          const message = e.response.data.message;
+          if (message) {
+            Feedback.toast.error(message);
+          } else {
+            Feedback.toast.error('网络错误，请稍后重试');
+          }
+        });
       }
     });
   }

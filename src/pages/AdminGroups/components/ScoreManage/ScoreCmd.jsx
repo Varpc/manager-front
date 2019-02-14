@@ -1,11 +1,11 @@
 import React from 'react';
-import { Input, Button } from '@icedesign/base';
+import { Input, Button, Icon } from '@icedesign/base';
 
 export default class Cmd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: 0.0,
+      score: '0',
     };
   }
 
@@ -13,7 +13,6 @@ export default class Cmd extends React.Component {
     this.setState({
       score: value,
     });
-    console.log(value);
   };
 
   render() {
@@ -32,7 +31,7 @@ export default class Cmd extends React.Component {
               submit(parseFloat(this.state.score), 'plus');
             }}
           >
-            +
+            <Icon type="add" />
           </Button>
           <Button
             type="secondary"
@@ -40,7 +39,7 @@ export default class Cmd extends React.Component {
               submit(parseFloat(this.state.score), 'minus');
             }}
           >
-            -
+            <Icon type="minus" />
           </Button>
         </Button.Group>
       </div>

@@ -2,6 +2,7 @@
   "name": "@icedesign/hospital-scaffold",
   "version": "1.0.0",
   "description": "该模板适用于医院类的后台管理系统",
+  "homepage": ".",
   "keywords": [
     "ice-scaffold"
   ],

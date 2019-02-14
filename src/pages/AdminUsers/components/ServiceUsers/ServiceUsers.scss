@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  margin-top: 15px;
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    .page-title {
+      height: 30px;
+      line-height: 30px;
+      font-size: 26px;
+      font-weight: bold;
+      color: #333;
+      border-left: #666 solid 5px;
+      padding-left: 12px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.cmd {
+  width: 150px;
+  display: inline-block;
+  .button {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

@@ -62,6 +62,11 @@ const adminAsideMenuConfig = [
     icon: 'content',
   },
   {
+    name: '用户管理',
+    path: '/admin/users',
+    icon: 'yonghu',
+  },
+  {
     name: '队伍管理',
     path: '/admin/groups',
     icon: 'fans',

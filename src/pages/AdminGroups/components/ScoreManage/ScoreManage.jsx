@@ -17,7 +17,7 @@ export default class ScoreManage extends React.Component {
 
   componentDidMount() {
     axios
-      .get('/api/groups')
+      .get('/api/admin/groups')
       .then((r) => {
         this.setState({
           dataSource: r.data.data,
@@ -48,10 +48,15 @@ export default class ScoreManage extends React.Component {
       content: '真的要全部清零吗？',
       title: '警告',
       onOk: () => {
-        this.setState({
-          dataSource: this.state.dataSource.map((item) => {
-            return { ...item, score: 0 };
-          }),
+        axios.put('/api/admin/groups').then(() => {
+          this.setState({
+            dataSource: this.state.dataSource.map((item) => {
+              return { ...item, score: 0 };
+            }),
+          });
+        }).catch((e) => {
+          console.log('error', e);
+          Feedback.toast.error('网络错误，请稍后重试');
         });
       },
     });
@@ -65,42 +70,43 @@ export default class ScoreManage extends React.Component {
      * @param type (String "plus" or "minus") 减分还是加分
      */
     const submit = (num, type) => {
-      // axios
-      //   .put(`/${id}`, { num, type })
-      //   .then(() => {
-      //     this.setState({
-      //       dataSource: this.state.dataSource.map((item) => {
-      //         if (item.group_id === id) {
-      //           if (type === 'plus') {
-      //             return { ...item, score: item.score + num };
-      //           } else if (type === 'minus') {
-      //             return { ...item, score: item.score - num };
-      //           }
-      //         }
-      //         return item;
-      //       }),
-      //     });
-      //   })
-      //   .catch((e) => {
-      //     Feedback.toast.error('提交失败，请稍后重试');
-      //     console.log('error', e);
-      //   });
+      axios
+        .put(`/api/admin/group/${id}`, { num, type })
+        .then(() => {
+          this.setState({
+            dataSource: this.state.dataSource.map((item) => {
+              if (item.group_id === id) {
+                if (type === 'plus') {
+                  return { ...item, score: item.score + num };
+                } else if (type === 'minus') {
+                  return { ...item, score: item.score - num };
+                }
+              }
+              return item;
+            }),
+          });
+        })
+        .catch((e) => {
+          Feedback.toast.error('提交失败，请稍后重试');
+          console.log('error', e);
+        });
 
       /** 以下用于测试 */
-      this.setState({
-        dataSource: this.state.dataSource.map((item) => {
-          if (item.group_id === id) {
-            if (type === 'plus') {
-              return { ...item, score: item.score + num };
-            } else if (type === 'minus') {
-              return { ...item, score: item.score - num };
-            }
-          }
-          return item;
-        }),
-      });
+      //   this.setState({
+      //     dataSource: this.state.dataSource.map((item) => {
+      //       if (item.group_id === id) {
+      //         if (type === 'plus') {
+      //           return { ...item, score: item.score + num };
+      //         } else if (type === 'minus') {
+      //           return { ...item, score: item.score - num };
+      //         }
+      //       }
+      //       return item;
+      //     }),
+      //   });
+      // };
+      /** ************* */
     };
-    /** ************* */
     return <ScoreCmd submit={submit} />;
   };
 

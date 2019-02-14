@@ -68,7 +68,6 @@ export default class User extends React.Component {
   render() {
     const isLogin = this.props.user.is_login;
     const isAdmin = this.props.user.is_admin;
-    // 头像未解决 留坑
     const { name, banji, image } = this.props.user;
     const manager = (
       <li className="user-profile-menu-item">

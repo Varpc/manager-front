@@ -31,7 +31,12 @@ export default class AdminGroups extends React.Component {
   render() {
     return (
       <div>
-        <Nav className="nav" direction="hoz" activeDirection="bottom">
+        <Nav
+          className="nav"
+          direction="hoz"
+          activeDirection="bottom"
+          defaultSelectedKeys={['1']}
+        >
           <Item key="1" icon="service" onClick={this.handleItemClick}>
             分数管理
           </Item>

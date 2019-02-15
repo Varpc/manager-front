@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import IceContainer from '@icedesign/container';
-import { Table, Button } from '@icedesign/base';
+import { Table, Button, Feedback } from '@icedesign/base';
+import axios from 'axios';
 import './ServiceUsers.scss';
 
 export default class ServiceUsers extends React.Component {
@@ -40,61 +41,41 @@ export default class ServiceUsers extends React.Component {
     });
   }
 
-  handleToRetire = (id) => {
-    /** todo: axios */
-    this.setState({
-      dataSource: this.state.dataSource.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 2,
-            cmd: {
-              status: 2,
-              id: item.id,
-            },
-          };
-        }
-        return item;
-      }),
+  sendChange = (id, value) => {
+    axios.put(`/api/admin/user/${id}`, {
+      status: value,
+    }).then(() => {
+      this.setState({
+        dataSource: this.state.dataSource.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              status: value,
+              cmd: {
+                status: value,
+                id: item.id,
+              },
+            };
+          }
+          return item;
+        }),
+      });
+    }).catch((e) => {
+      console.log('error', e);
+      Feedback.toast.error('网络错误，请稍后重试');
     });
+  }
+
+  handleToRetire = (id) => {
+    this.sendChange(id, 2);
   };
 
   handleToQuit = (id) => {
-    /** todo: axios */
-    this.setState({
-      dataSource: this.state.dataSource.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 3,
-            cmd: {
-              status: 3,
-              id: item.id,
-            },
-          };
-        }
-        return item;
-      }),
-    });
+    this.sendChange(id, 3);
   };
 
   handleRollBack = (id) => {
-    /** todo: axios */
-    this.setState({
-      dataSource: this.state.dataSource.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 1,
-            cmd: {
-              status: 1,
-              id: item.id,
-            },
-          };
-        }
-        return item;
-      }),
-    });
+    this.sendChange(id, 1);
   }
 
   renderTableCmd = (cmd) => {

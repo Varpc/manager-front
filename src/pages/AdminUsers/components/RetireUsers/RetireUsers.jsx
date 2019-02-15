@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import IceContainer from '@icedesign/container';
-import { Table, Button, Dialog } from '@icedesign/base';
+import { Table, Button, Dialog, Feedback } from '@icedesign/base';
+import axios from 'axios';
 import './RetireUsers.scss';
 
 export default class RetireUsers extends React.Component {
@@ -40,20 +42,32 @@ export default class RetireUsers extends React.Component {
   }
 
   handleToDelete = (id) => {
-    /** todo: axios */
     Dialog.alert({
       title: '警告',
       content: '注意，操作不可逆！真的要删除吗？',
       onOk: () => {
-        this.props.onDelete(id);
+        axios
+          .delete(`/api/admin/user/${id}`)
+          .then(() => {
+            this.props.onDelete(id);
+          })
+          .catch((e) => {
+            console.log('error', e);
+            Feedback.toast.error('网络错误，请稍后重试');
+          });
       },
     });
   };
 
   renderTableCmd = (cmd) => {
     return (
-      // eslint-disable-next-line react/jsx-no-bind
-      <Button type="normal" shape="warning" onClick={this.handleToDelete.bind(this, cmd.id)}>删除</Button>
+      <Button
+        type="normal"
+        shape="warning"
+        onClick={this.handleToDelete.bind(this, cmd.id)}
+      >
+        删除
+      </Button>
     );
   };
 

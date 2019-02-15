@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import IceContainer from '@icedesign/container';
-import { Table, Button } from '@icedesign/base';
+import { Table, Button, Feedback } from '@icedesign/base';
+import axios from 'axios';
 import './ReviewUsers.scss';
 
 export default class ReviewUsers extends React.Component {
@@ -40,42 +41,37 @@ export default class ReviewUsers extends React.Component {
     });
   }
 
-  handleReview = (id) => {
-    /** todo: axios */
-    this.setState({
-      dataSource: this.state.dataSource.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 1,
-            cmd: {
-              status: 1,
-              id: item.id,
-            },
-          };
-        }
-        return item;
-      }),
+  seedChange = (id, value) => {
+    axios.put(`/api/admin/user/${id}`, {
+      status: value,
+    }).then(() => {
+      this.setState({
+        dataSource: this.state.dataSource.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              status: value,
+              cmd: {
+                status: value,
+                id: item.id,
+              },
+            };
+          }
+          return item;
+        }),
+      });
+    }).catch((e) => {
+      console.log('error', e);
+      Feedback.toast.error('网络错误，请稍后重试');
     });
+  }
+
+  handleReview = (id) => {
+    this.seedChange(id, 1);
   };
 
   handleRollBack = (id) => {
-    /** todo: axios */
-    this.setState({
-      dataSource: this.state.dataSource.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            status: 0,
-            cmd: {
-              status: 0,
-              id: item.id,
-            },
-          };
-        }
-        return item;
-      }),
-    });
+    this.seedChange(id, 0);
   }
 
   renderTableCmd = (cmd) => {

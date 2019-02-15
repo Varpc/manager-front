@@ -2,19 +2,19 @@
  * 定义应用路
  */
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Confirm from './components/Confirm';
+// import Confirm from './components/Confirm';
 import routerConfig from './routerConfig';
 
 // 路由切换时确认弹窗
-const confirm = (message, callback) => {
-  console.log('confirm');
-  ReactDOM.render(
-    <Confirm message={message} callback={callback} />,
-    document.getElementById('confirm')
-  );
-};
+// const confirm = (message, callback) => {
+//   console.log('confirm');
+//   ReactDOM.render(
+//     <Confirm message={message} callback={callback} />,
+//     document.getElementById('confirm')
+//   );
+// };
 
 /**
  * 将路由信息扁平化，继承上一级路由的 path

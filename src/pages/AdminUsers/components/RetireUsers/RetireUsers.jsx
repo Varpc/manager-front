@@ -94,7 +94,7 @@ export default class RetireUsers extends React.Component {
       <div className="container">
         <div>
           <div className="page-header">
-            <div className="page-title">待审核用户</div>
+            <div className="page-title">退役用户</div>
           </div>
           <hr />
           <IceContainer>

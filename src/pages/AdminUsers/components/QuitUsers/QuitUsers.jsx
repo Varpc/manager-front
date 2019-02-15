@@ -112,7 +112,7 @@ export default class QuitUsers extends React.Component {
       <div className="container">
         <div>
           <div className="page-header">
-            <div className="page-title">待审核用户</div>
+            <div className="page-title">除名用户</div>
           </div>
           <hr />
           <IceContainer>

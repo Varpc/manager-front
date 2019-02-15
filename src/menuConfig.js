@@ -15,7 +15,7 @@ const headerMenuConfig = [
   },
   {
     name: '比赛统计',
-    path: '/bisai',
+    path: '/contest/home',
     icon: 'content',
   },
   {

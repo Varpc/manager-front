@@ -1,0 +1,40 @@
+.rank-problem-item-green {
+  background: #28a745;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-problem-item-red {
+  background: #f26383;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-problem-item-blue {
+  background: #00b7d9;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-problem-item-write {
+  background: #fff;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-table {
+  margin-top: 20px;
+  .next-table-body {
+    table td div {
+      padding: 0;
+    }
+  }
+}

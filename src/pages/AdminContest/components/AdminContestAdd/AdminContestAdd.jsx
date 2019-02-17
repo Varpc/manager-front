@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import React from 'react';
 import {
   Form,
@@ -9,27 +10,14 @@ import {
   DatePicker,
   TimePicker,
   Range,
+  Feedback,
 } from '@icedesign/base';
+import axios from 'axios';
 import './AdminContestAdd.scss';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { Row, Col } = Grid;
-
-const getData = [
-  {
-    id: 1,
-    name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-  },
-  {
-    id: 2,
-    name: 'bbb',
-  },
-  {
-    id: 3,
-    name: 'ccc',
-  },
-];
+const { Row } = Grid;
 
 export default class AdminContestAdd extends React.Component {
   constructor(props) {
@@ -41,13 +29,51 @@ export default class AdminContestAdd extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({
-      saiji: getData,
-    });
+    axios
+      .get('/api/admin/contestseason')
+      .then((r) => {
+        this.setState({
+          saiji: r.data.data,
+        });
+      })
+      .catch((e) => {
+        console.log('error', e);
+        Feedback.toast.error('网络错误，请稍后重试');
+      });
+  }
+
+  formatData = (data) => {
+    const time = data.time;
+    const timeSecond = time.getHours() * 3600 + time.getMinutes() * 60 + time.getSeconds();
+    return {
+      date: data.date.getTime(),
+      length: data.length * 3600,
+      name: data.name,
+      penalty: data.penalty,
+      problem: data.problem,
+      data: data.rankdata,
+      saiji: data.saiji,
+      type: data.type,
+      time: timeSecond,
+    };
   }
 
   handleSubmit = () => {
     console.log('收到表单值：', this.field.getValues());
+    this.field.validate((errors, values) => {
+      if (errors) {
+        console.log('error');
+        return;
+      }
+      axios.post('/api/admin/contest', {
+        ...this.formatData(values),
+      }).then(() => {
+        Feedback.toast.success('创建成功');
+      }).catch((e) => {
+        console.log('error', e);
+        Feedback.toast.error('网络错误，请稍后重试');
+      });
+    });
   };
 
   render() {
@@ -135,15 +161,6 @@ export default class AdminContestAdd extends React.Component {
               <FormItem>
                 <TimePicker
                   {...init('time', {
-                    getValueFromEvent: (time) => {
-                      time =
-                        time &&
-                        time.toLocaleTimeString('zh-CN', {
-                          hour12: false,
-                        });
-
-                      return time;
-                    },
                     rules: [
                       {
                         required: true,
@@ -192,6 +209,27 @@ export default class AdminContestAdd extends React.Component {
                 ],
               })}
             />
+            分钟
+          </FormItem>
+
+          <FormItem label="比赛时长" {...formItemLayout} required>
+            <Range
+              defaultValue={5}
+              min={1}
+              max={6}
+              style={{ marginTop: '10px' }}
+              marks={5}
+              {...init('length', {
+                rules: [
+                  {
+                    required: true,
+                    trigger: 'onBlur',
+                    message: '比赛时长必选',
+                  },
+                ],
+              })}
+            />
+            小时
           </FormItem>
 
           <FormItem label="榜单数据" {...formItemLayout}>
@@ -215,7 +253,6 @@ export default class AdminContestAdd extends React.Component {
             </Button>
           </FormItem>
         </Form>
-        
       </div>
     );
   }

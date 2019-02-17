@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 import './scss/light.scss';
-// import './HeaderFooterLayout.scss';
+import './HeaderFooterLayout.scss';
 
 export default class HeaderFooterLayout extends Component {
   static propTypes = {};

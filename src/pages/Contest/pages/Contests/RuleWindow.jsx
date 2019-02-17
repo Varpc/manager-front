@@ -27,8 +27,7 @@ export default class RuleWindow extends React.Component {
           footer={footer}
           onClose={this.handleChangevisible}
         >
-          <h1>Hello world</h1>
-          {/* <div dangerouslySetInnerHTML={{ __html: this.props.rule }} /> */}
+          <div dangerouslySetInnerHTML={{ __html: this.props.rule }} />
         </Dialog>
       </div>
     );

@@ -1,29 +1,48 @@
+/* eslint-disable no-mixed-operators */
 import { Balloon, Button, Dialog, Feedback, Icon } from '@icedesign/base';
 import IceImg from '@icedesign/img';
 import FoundationSymbol from 'foundation-symbol';
 import React from 'react';
+import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { mapUserReducerToProps, mapUserStateToProps } from '../../utils/userRedux/mapToPrpos';
+import {
+  mapUserReducerToProps,
+  mapUserStateToProps,
+} from '../../utils/userRedux/mapToPrpos';
 import SignupForm from './SignupForm';
 import './User.scss';
 
 const Toast = Feedback.toast;
 
-@connect(mapUserStateToProps, mapUserReducerToProps)
+// todo: 性能优化
+@connect(
+  mapUserStateToProps,
+  mapUserReducerToProps
+)
 @withRouter
+@withCookies
 export default class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
     };
+    this.cookies = this.props.cookies;
     this.onLoginClick = this.onLoginClick.bind(this);
     this.onRegisterClick = this.onRegisterClick.bind(this);
     this.onLogin = this.onLogin.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.handleToMyHome = this.handleToMyHome.bind(this);
     this.handleToAdminHome = this.handleToAdminHome.bind(this);
+  }
+
+  componentDidMount() {
+    const cookie = this.cookies.get('user');
+    console.log('cookie', cookie);
+    if (cookie !== null && typeof cookie !== 'undefined') {
+      this.props.actions.login(cookie);
+    }
   }
 
   // 登陆注册按钮
@@ -38,7 +57,14 @@ export default class User extends React.Component {
   }
 
   // 登陆登出时触发
-  onLogin(data) {
+  onLogin(data, saveInfo = false) {
+    if (saveInfo) {
+      const date = new Date();
+      date.setTime(date.getTime() + 30 * 24 * 3600 * 1000);
+      this.cookies.set('user', data, { path: '/', expires: date });
+    } else {
+      this.cookies.set('user', data);
+    }
     this.props.actions.login(data);
     this.setState({
       visible: false,
@@ -46,6 +72,7 @@ export default class User extends React.Component {
   }
 
   onLogout() {
+    this.cookies.remove('user');
     this.props.actions.logout();
     Toast.success('登出成功');
   }
@@ -59,7 +86,7 @@ export default class User extends React.Component {
   handleToEditInfo = () => {
     const url = `/editinfo/${this.props.user.id}`;
     this.props.history.push(url);
-  }
+  };
 
   handleToAdminHome() {
     this.props.history.push('/admin/home');

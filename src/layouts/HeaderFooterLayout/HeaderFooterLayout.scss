@@ -1,7 +1,8 @@
 // Global RESET
 .header-footer-layout {
-  min-width: 1280px;
-  .next-btn {
-    border-radius: 4px;
-  }
+
+}
+
+.header-footer-layout::-webkit-scrollbar {
+  width: 0 !important;
 }

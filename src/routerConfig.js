@@ -54,11 +54,11 @@ const userRouterConfig = [
         component: Contests,
       },
       {
-        path: '/:contests',
+        path: '/:contestseason',
         component: ContestHome,
       },
       {
-        path: '/:contests/:showcontest',
+        path: '/:contestseason/:showcontest',
         component: ShowContest,
       },
     ],

@@ -3,20 +3,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { Table } from '@icedesign/base';
 import './GroupContest.scss';
 
-const getDate = () => {
-  const data = [];
-  for (let i = 0; i <= 20; i += 1) {
-    data.push({
-      id: i,
-      name: `Group Contest ${i}`,
-      time: '2019-3-5',
-      length: '3 hour',
-      creator: 'admin',
-    });
-  }
-  return data;
-};
-
 @withRouter
 export default class GroupContest extends React.Component {
   constructor(props) {
@@ -27,30 +13,73 @@ export default class GroupContest extends React.Component {
   }
 
   componentWillMount() {
+    const data = this.props.data;
     this.setState({
-      dataSource: getDate().map((item) => {
-        return {
-          ...item,
-          contest: {
-            name: item.name,
-            id: item.id,
-          },
-        };
-      }),
+      dataSource: this.formatData(data),
     });
   }
 
+  componentWillReceiveProps(newProps) {
+    const data = newProps.data;
+    this.setState({
+      dataSource: this.formatData(data),
+    });
+  }
+
+  // 格式化数据
+  formatData = (data) => {
+    // console.log('data', data);
+    const date = new Date();
+    return data.map((item) => {
+      date.setTime(item.date);
+      const timeStr = `${this.formatDate(date)} ${this.formatSeconds(
+        item.time
+      )}`;
+      return {
+        contest: {
+          id: item.id,
+          name: item.name,
+        },
+        time: timeStr,
+        length: this.formatSeconds(item.length),
+        creator: item.creator,
+      };
+    });
+  };
+
+  // 格式化时间
+  formatDate = (date) => {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
+
+  // 格式化时间：将秒改成时分秒的格式
+  formatSeconds = (result) => {
+    const h =
+      Math.floor(result / 3600) < 10
+        ? `0${Math.floor(result / 3600)}`
+        : Math.floor(result / 3600);
+    const m =
+      Math.floor((result / 60) % 60) < 10
+        ? `0${Math.floor((result / 60) % 60)}`
+        : Math.floor((result / 60) % 60);
+    const s =
+      Math.floor(result % 60) < 10
+        ? `0${Math.floor(result % 60)}`
+        : Math.floor(result % 60);
+    return (result = `${h}:${m}:${s}`);
+  };
+
   renderTableName = (contest) => {
     // console.log(this.props.location);
-    const path =
-      `${this.props.location.pathname}/${contest.id}`;
+    const path = `${this.props.location.pathname}/${contest.id}`;
     return <Link to={path}>{contest.name}</Link>;
   };
 
   render() {
     return (
       <div>
-        <Table dataSource={this.state.dataSource}
+        <Table
+          dataSource={this.state.dataSource}
           className="group-contest-table"
         >
           <Table.Column

@@ -37,6 +37,7 @@ export default class SignupForm extends Component {
     this.refs.form.validateAll((errors, values) => {
       data = values;
     });
+    console.log(data);
     if (data.account === undefined || data.account === '') {
       return undefined;
     }
@@ -49,7 +50,7 @@ export default class SignupForm extends Component {
         password: data.password,
       })
       .then((r) => {
-        this.props.onLogin(r.data);
+        this.props.onLogin(r.data, data.checkbox); // 将是否保存账号传给回调函数
         Toast.success('登陆成功');
       })
       .catch((error) => {

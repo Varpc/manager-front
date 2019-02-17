@@ -21,7 +21,6 @@ import ContestContainer from './pages/Contest';
 import Contests from './pages/Contest/pages/Contests';
 import ContestHome from './pages/Contest/pages/ContestHome';
 import ShowContest from './pages/Contest/pages/ShowContest';
-import Rw from './pages/Contest/pages/Contests/RuleWindow';
 
 import AdminConfig from './pages/AdminConfig';
 import AdminHome from './pages/AdminHome';
@@ -29,6 +28,7 @@ import AdminBoard from './pages/AdminBoard';
 import AdminPosts from './pages/AdminPosts';
 import AdminGroups from './pages/AdminGroups';
 import AdminUsers from './pages/AdminUsers';
+import AdminContest from './pages/AdminContest';
 
 import NotFound from './pages/NotFound';
 
@@ -140,6 +140,11 @@ const adminRouterConfig = [
     path: '/admin/groups',
     layout: AsideLayout,
     component: AdminGroups,
+  },
+  {
+    path: '/admin/contest',
+    layout: AsideLayout,
+    component: AdminContest,
   },
   {
     path: '/admin/*',

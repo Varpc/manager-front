@@ -59,7 +59,7 @@ const adminAsideMenuConfig = [
   {
     name: '总结管理',
     path: '/admin/posts',
-    icon: 'content',
+    icon: 'edit',
   },
   {
     name: '用户管理',
@@ -70,6 +70,11 @@ const adminAsideMenuConfig = [
     name: '队伍管理',
     path: '/admin/groups',
     icon: 'fans',
+  },
+  {
+    name: '比赛管理',
+    path: '/admin/contest',
+    icon: 'content',
   },
 ];
 

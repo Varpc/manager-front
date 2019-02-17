@@ -2,6 +2,48 @@ import React from 'react';
 import BraftEditor from 'braft-editor';
 import './RichEditor.scss';
 
+/**
+ * 富文本编辑器组件
+ *@param value 使用createEditorState() 创建的BraftEditor对象
+ *@param onChange (func) 状态改变时的回调函数
+ *
+ * 使用时同时引入RichEditor组件和createEditorState函数，例如
+ * import { RichEditor, createEditorState } from '根据目录结构填写路径';
+ * export default class App extends React.Component {
+ *   constructor(props) {
+ *     super(props);
+ *     this.state = {
+ *       editorState: createEditorState(''), // 参数为html格式的字符串
+ *     }
+ *   }
+ *
+ *   onChange = (editorState) => {
+ *     this.setState({
+ *       editorState,
+ *     });
+ *   }
+ *
+ *   render() {
+ *     return (
+ *       <RichEditor value={this.state.editorState} onChange={this.onChange} />
+ *     );
+ *   }
+ * }
+ */
+export default class Editor extends React.Component {
+  render() {
+    return (
+      <BraftEditor
+        {...this.props}
+        media={{
+          uploadFn: myUploadFn,
+          validateFn: myValidateFn,
+        }}
+      />
+    );
+  }
+}
+
 const myValidateFn = (file) => {
   return file.size < 1024 * 1024 * 10; // 规定文件大小小于10M
 };
@@ -50,21 +92,3 @@ const myUploadFn = (param) => {
   xhr.open('POST', serverURL, true);
   xhr.send(fd);
 };
-
-/**
- * 富文本编辑器组件
- *@param {string} html 初始数据,父组件通过此获取html值
- */
-export default class Editor extends React.Component {
-  render() {
-    return (
-      <BraftEditor
-        {...this.props}
-        media={{
-          uploadFn: myUploadFn,
-          validateFn: myValidateFn,
-        }}
-      />
-    );
-  }
-}

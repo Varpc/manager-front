@@ -75,7 +75,7 @@ export default class ReviewUsers extends React.Component {
   }
 
   renderTableCmd = (cmd) => {
-    console.log('cmd', cmd);
+    // console.log('cmd', cmd);
     if (cmd.status === 1) {
       return <Button type="primary" onClick={this.handleRollBack.bind(this, cmd.id)} >已通过</Button>;
     }

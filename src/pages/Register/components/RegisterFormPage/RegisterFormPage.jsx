@@ -120,7 +120,7 @@ class register extends Component {
               alt="logo"
             />
           </a>
-          <p style={styles.desc}>欢迎注册xxx管理系统</p>
+          <p style={styles.desc}>欢迎注册Manager管理系统</p>
         </div>
         <div style={styles.formContainer}>
           <h4 style={styles.formTitle}>注 册</h4>

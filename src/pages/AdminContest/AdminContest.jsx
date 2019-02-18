@@ -44,9 +44,9 @@ export default class AdminContest extends React.Component {
           activeDirection="bottom"
           defaultSelectedKeys={['1']}
         >
-          <Item key="1" onClick={this.handleItemClick} >赛季总览</Item>
-          <Item key="2" onClick={this.handleItemClick} >添加比赛</Item>
-          <Item key="3" onClick={this.handleItemClick} >新建赛季</Item>
+          <Item key="1" icon="table" onClick={this.handleItemClick} >赛季总览</Item>
+          <Item key="2" icon="nav-list" onClick={this.handleItemClick} >添加比赛</Item>
+          <Item key="3" icon="office" onClick={this.handleItemClick} >新建赛季</Item>
         </Nav>
         {this.renderContest()}
       </div>

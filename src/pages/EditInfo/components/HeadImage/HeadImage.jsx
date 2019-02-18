@@ -1,11 +1,9 @@
-import React from 'react';
+import { Dialog, Feedback, Upload } from '@icedesign/base';
 import Img from '@icedesign/img';
-import { Upload, Dialog, Feedback } from '@icedesign/base';
+import React from 'react';
+import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
-import {
-  mapUserStateToProps,
-  mapUserReducerToProps,
-} from '../../../../utils/userRedux/mapToPrpos';
+import { mapUserReducerToProps, mapUserStateToProps } from '../../../../utils/userRedux/mapToPrpos';
 import './HeadImage.scss';
 
 const { CropUpload } = Upload;
@@ -14,6 +12,7 @@ const { CropUpload } = Upload;
   mapUserStateToProps,
   mapUserReducerToProps
 )
+@withCookies
 export default class HeadImage extends React.Component {
   constructor(props) {
     super(props);
@@ -80,6 +79,7 @@ export default class HeadImage extends React.Component {
   onSuccess = (res) => {
     // console.log('onSuccess callback : ', res);
     Feedback.toast.success('设置成功');
+    this.props.cookies.remove('user');
     this.props.actions.updateInfo({ image: res.imgURL });
     this.setState({
       image: res.imgURL,

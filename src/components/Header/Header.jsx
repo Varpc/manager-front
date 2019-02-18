@@ -1,6 +1,6 @@
 import Menu, { Item as MenuItem, SubMenu } from '@icedesign/menu';
 import FoundationSymbol from 'foundation-symbol';
-import React, { Component } from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { headerMenuConfig } from '../../menuConfig';
 import User from '../User';
@@ -8,7 +8,7 @@ import Logo from '../Logo';
 import './Header.scss';
 
 @withRouter
-export default class Header extends Component {
+export default class Header extends React.PureComponent {
   static propTypes = {};
 
   static defaultProps = {};

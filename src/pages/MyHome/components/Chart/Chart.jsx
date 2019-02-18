@@ -27,7 +27,7 @@ export default class Chart extends React.Component {
       .get(`/api/problem/${this.state.userId}`)
       .then((r) => {
         const data = r.data;
-        console.log(data);
+        // console.log(data);
         const ansProblems = [];
         ansProblems.push({ oj: '蓝书', sum: data.blue_book });
         ansProblems.push({ oj: '紫书', sum: data.purple_book });

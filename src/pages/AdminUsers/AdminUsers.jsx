@@ -47,9 +47,9 @@ export default class AdminUsers extends React.Component {
   renderContent = () => {
     const key = this.state.key;
     const dataSource = this.state.dataSource;
-    console.log('data', dataSource);
+    // console.log('data', dataSource);
     const a = dataSource.filter(item => item.status === 0);
-    console.log('test', a);
+    // console.log('test', a);
     // 0审核 1现役 2退役 3除名
     switch (key) {
       case '0':
@@ -74,7 +74,6 @@ export default class AdminUsers extends React.Component {
   };
 
   render() {
-    console.log('all', this.state.dataSource);
     return (
       <div>
         <Nav

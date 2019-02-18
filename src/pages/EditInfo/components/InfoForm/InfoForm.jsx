@@ -7,6 +7,7 @@ import {
 import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withCookies } from 'react-cookie';
 import {
   mapUserReducerToProps,
   mapUserStateToProps,
@@ -17,6 +18,7 @@ import './InfoForm.scss';
   mapUserStateToProps,
   mapUserReducerToProps
 )
+@withCookies
 export default class InfoForm extends Component {
   constructor(props) {
     super(props);
@@ -104,6 +106,7 @@ export default class InfoForm extends Component {
       .post(`/api/user/${this.state.userId}`, { ...data })
       .then(() => {
         Feedback.toast.success('修改成功');
+        this.props.cookies.remove('user'); // 清除cookies
         this.props.actions.updateInfo(data); // 更新store
       })
       .catch(() => {

@@ -1,11 +1,15 @@
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/forbid-prop-types */
 /**
  * 定义应用路
  */
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
 // import Confirm from './components/Confirm';
-import routerConfig from './routerConfig';
+// import routerConfig from './routerConfig';
 
 // 路由切换时确认弹窗
 // const confirm = (message, callback) => {
@@ -15,6 +19,9 @@ import routerConfig from './routerConfig';
 //     document.getElementById('confirm')
 //   );
 // };
+
+let isLogin;
+let isAdmin; // 用于在生成路由时记录用户是否登陆的中间变量
 
 /**
  * 将路由信息扁平化，继承上一级路由的 path
@@ -28,10 +35,22 @@ function recursiveRouterConfigV4(config = []) {
       layout: item.layout,
       component: item.component,
     };
-    if (Array.isArray(item.children)) {
-      route.childRoutes = recursiveRouterConfigV4(item.children);
+    if (!item.rule || typeof item.rule === 'undefined') {
+      if (Array.isArray(item.children)) {
+        route.childRoutes = recursiveRouterConfigV4(item.children);
+      }
+      routeMap.push(route);
+    } else if (item.rule === 'user' && isLogin) {
+      if (Array.isArray(item.children)) {
+        route.childRoutes = recursiveRouterConfigV4(item.children);
+      }
+      routeMap.push(route);
+    } else if (item.rule === 'admin' && isLogin && isAdmin) {
+      if (Array.isArray(item.children)) {
+        route.childRoutes = recursiveRouterConfigV4(item.children);
+      }
+      routeMap.push(route);
     }
-    routeMap.push(route);
   });
   return routeMap;
 }
@@ -124,6 +143,40 @@ function renderRouterConfigV4(container, router, contextPath) {
   return <Switch>{routeChildren}</Switch>;
 }
 
-const routerWithReactRouter4 = recursiveRouterConfigV4(routerConfig);
-const routeChildren = renderRouterConfigV4(null, routerWithReactRouter4, '/');
-export default <Router>{routeChildren}</Router>;
+// const routerWithReactRouter4 = recursiveRouterConfigV4(routerConfig);
+// const routeChildren = renderRouterConfigV4(null, routerWithReactRouter4, '/');
+// export default <Router>{routeChildren}</Router>;
+
+export default class Root extends React.Component {
+  static propTypes = {
+    store: PropTypes.object.isRequired,
+    routeConfig: PropTypes.array.isRequired,
+  };
+
+  componentDidMount() {
+    this.props.store.subscribe(() => {
+      this.forceUpdate(); // store改变时自动render
+      // console.log('update');
+    });
+  }
+
+  render() {
+    isLogin = this.props.store.getState().user.is_login;
+    isAdmin = this.props.store.getState().user.is_admin;
+    // console.log('is_login', isLogin);
+    // console.log('is_admin', isAdmin);
+    const routerWithReactRouter4 = recursiveRouterConfigV4(
+      this.props.routeConfig
+    );
+    const routeChildren = renderRouterConfigV4(
+      null,
+      routerWithReactRouter4,
+      '/'
+    );
+    return (
+      <Provider store={this.props.store}>
+        <Router>{routeChildren}</Router>
+      </Provider>
+    );
+  }
+}

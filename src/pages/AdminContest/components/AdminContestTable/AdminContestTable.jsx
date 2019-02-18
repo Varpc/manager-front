@@ -16,7 +16,7 @@ export default class AdminContestTable extends React.Component {
 
   // 格式化数据
   formatData = (data) => {
-    console.log('data', data);
+    // console.log('data', data);
     const beginTime = new Date();
     const endTime = new Date();
     return data.map((item) => {

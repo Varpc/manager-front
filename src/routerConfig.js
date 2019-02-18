@@ -82,6 +82,7 @@ const userRouterConfig = [
     path: '/postscreate',
     layout: HeaderFooterLayout,
     component: PostsCreate,
+    rule: 'user',
   },
   {
     path: '/post/:post_id',
@@ -92,6 +93,7 @@ const userRouterConfig = [
     path: '/post/:post_id/edit',
     layout: HeaderFooterLayout,
     component: EditPost,
+    rule: 'user',
   },
   {
     path: '/myhome/:id',
@@ -102,6 +104,7 @@ const userRouterConfig = [
     path: '/editinfo/:id',
     layout: HeaderFooterLayout,
     component: EditInfo,
+    rule: 'user',
   },
   {
     path: '/register',
@@ -115,41 +118,49 @@ const adminRouterConfig = [
     path: '/admin/config',
     layout: AsideLayout,
     component: AdminConfig,
+    rule: 'admin',
   },
   {
     path: '/admin/home',
     layout: AsideLayout,
     component: AdminHome,
+    rule: 'admin',
   },
   {
     path: '/admin/board',
     layout: AsideLayout,
     component: AdminBoard,
+    rule: 'admin',
   },
   {
     path: '/admin/posts',
     layout: AsideLayout,
     component: AdminPosts,
+    rule: 'admin',
   },
   {
     path: '/admin/users',
     layout: AsideLayout,
     component: AdminUsers,
+    rule: 'admin',
   },
   {
     path: '/admin/groups',
     layout: AsideLayout,
     component: AdminGroups,
+    rule: 'admin',
   },
   {
     path: '/admin/contest',
     layout: AsideLayout,
     component: AdminContest,
+    rule: 'admin',
   },
   {
     path: '/admin/*',
     layout: AsideLayout,
     component: NotFound,
+    rule: 'admin',
   },
 ];
 

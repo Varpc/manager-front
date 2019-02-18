@@ -22,7 +22,7 @@ const Toast = Feedback.toast;
 )
 @withRouter
 @withCookies
-export default class User extends React.Component {
+export default class User extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,9 +39,12 @@ export default class User extends React.Component {
 
   componentDidMount() {
     const cookie = this.cookies.get('user');
-    console.log('cookie', cookie);
-    if (cookie !== null && typeof cookie !== 'undefined') {
-      this.props.actions.login(cookie);
+    const isLogin = this.props.user.is_login;
+    // console.log('cookie', cookie);
+    if (!isLogin && cookie !== null && typeof cookie !== 'undefined') {
+      // 这里要延时登陆。若不延时，不知为什么，当登录后，如果在有限制登陆的路由中F5刷新的话，即使是登陆的，但路由获取不到
+      // 相关登陆的信息，也会按照没有登陆来渲染路由，可能和redux或者某些异步渲染有关，所以这里折中一下，等一会再更新store
+      setTimeout(() => { this.props.actions.login(cookie); }, 500);
     }
   }
 
@@ -74,6 +77,7 @@ export default class User extends React.Component {
   onLogout() {
     this.cookies.remove('user');
     this.props.actions.logout();
+    this.props.history.push('/');
     Toast.success('登出成功');
   }
 

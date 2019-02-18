@@ -15,7 +15,7 @@ export default class Contests extends React.Component {
 
   // 格式化数据
   formatData = (data) => {
-    console.log('data', data);
+    // console.log('data', data);
     const beginTime = new Date();
     const endTime = new Date();
     return data.map((item) => {
@@ -66,7 +66,6 @@ export default class Contests extends React.Component {
   };
 
   render() {
-    console.log(this.state.dataSource);
     return (
       <Table dataSource={this.state.dataSource} className="table">
         <Table.Column

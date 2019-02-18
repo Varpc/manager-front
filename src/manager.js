@@ -1,16 +1,27 @@
 import React from 'react';
 import { CookiesProvider } from 'react-cookie';
-import { Provider } from 'react-redux';
 import configStore from './redux/configStore';
-import router from './router';
+import routeConfig from './routerConfig';
+import Router from './router';
 
 const store = configStore();
+
+// export default class Root extends React.Component {
+//   render() {
+//     return (
+//       <CookiesProvider>
+//         <Provider store={store}>{router}</Provider>
+//       </CookiesProvider>
+//     );
+//   }
+// }
+
 
 export default class Root extends React.Component {
   render() {
     return (
       <CookiesProvider>
-        <Provider store={store}>{router}</Provider>
+        <Router store={store} routeConfig={routeConfig} />
       </CookiesProvider>
     );
   }

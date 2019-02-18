@@ -13,7 +13,6 @@ export default class RuleWindow extends React.Component {
     this.setState({
       visible: !this.state.visible,
     });
-    console.log('visible', this.state.visible);
   };
 
   render() {

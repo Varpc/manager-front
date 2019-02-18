@@ -15,7 +15,7 @@ export default class BarChart extends Component {
 
   render() {
     const data = this.props.dataSource;
-    console.log('barchart: ', data);
+    // console.log('barchart: ', data);
     const cols = {
       sales: { tickInterval: 20 },
     };

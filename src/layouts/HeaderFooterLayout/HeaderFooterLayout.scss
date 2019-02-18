@@ -1,8 +1,8 @@
 // Global RESET
-.header-footer-layout {
-
+html {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
 }
-
-.header-footer-layout::-webkit-scrollbar {
-  width: 0 !important;
+html::-webkit-scrollbar {
+  width: 0px;
 }

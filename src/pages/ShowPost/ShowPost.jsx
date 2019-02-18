@@ -20,7 +20,7 @@ export default class ShowPost extends React.Component {
     axios
       .get(`/api/post/${this.state.postId}`)
       .then((r) => {
-        console.log(r.data);
+        // console.log(r.data);
         this.setState({
           title: r.data.title,
           author: r.data.author,

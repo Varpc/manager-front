@@ -20,7 +20,7 @@ export default class ShowContest extends React.Component {
     axios
       .get(`/api/contest/${id}`)
       .then((r) => {
-        console.log('r.data', r.data);
+        // console.log('r.data', r.data);
         this.setState({
           data: r.data,
         });

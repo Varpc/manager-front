@@ -1,8 +1,9 @@
 // Global RESET
 html {
   -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
+  overflow-y:auto;
+  min-width: 1280px;
 }
 html::-webkit-scrollbar {
-  width: 0px;
+  width: 0px; // 隐藏滚动条
 }

@@ -1,11 +1,13 @@
-# ice-design-hospital
+# Manager-front
 
-该模板适用于医院类的后台管理系统
+这是manager的前端部分, 使用icedesign UI Library
 
 > 使用文档
 
 使用:
-
+- 首先clone本仓库：`git clone git@github.com:Varpc/manager-front.git`
+- `cd manager-front`
+- 安装所需依赖`npm install`
 - 启动调试服务: `npm start`
 - 构建 dist: `npm run build`
 
@@ -21,4 +23,5 @@
 - 页面文件: `src/pages`
 
 效果图:
-![screenshot](https://img.alicdn.com/tfs/TB19u3vzf1TBuNjy0FjXXajyXXa-2840-1596.png)
+![screenshot](/docs/images/192.168.80.1_4444_.jpg)
+

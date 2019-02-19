@@ -6,24 +6,24 @@ import React from 'react';
 import Loading from './components/Loading';
 import HeaderFooterLayout from './layouts/HeaderFooterLayout';
 import BlankLayout from './layouts/BlankLayout';
-import AsideLayout from './layouts/AsideLayout';
-import Home from './pages/Home';
-import Problems from './pages/Problems';
-import MyHome from './pages/MyHome';
+// import AsideLayout from './layouts/AsideLayout';
+// import Home from './pages/Home';
+// import Problems from './pages/Problems';
+// import MyHome from './pages/MyHome';
 // import Register from './pages/Register';
-import RecentContest from './pages/RecentContest';
-import Posts from './pages/Posts';
+// import RecentContest from './pages/RecentContest';
+// import Posts from './pages/Posts';
 // import PostsCreate from './pages/PostsCreate';
 
-import PostsShow from './pages/ShowPost';
+// import PostsShow from './pages/ShowPost';
 // import EditInfo from './pages/EditInfo';
-import Groups from './pages/Groups';
+// import Groups from './pages/Groups';
 // import EditPost from './pages/EditPost';
 
-import ContestContainer from './pages/Contest';
-import Contests from './pages/Contest/pages/Contests';
-import ContestHome from './pages/Contest/pages/ContestHome';
-import ShowContest from './pages/Contest/pages/ShowContest';
+// import ContestContainer from './pages/Contest';
+// import Contests from './pages/Contest/pages/Contests';
+// import ContestHome from './pages/Contest/pages/ContestHome';
+// import ShowContest from './pages/Contest/pages/ShowContest';
 
 // import AdminConfig from './pages/AdminConfig';
 // import AdminHome from './pages/AdminHome';
@@ -34,6 +34,67 @@ import ShowContest from './pages/Contest/pages/ShowContest';
 // import AdminContest from './pages/AdminContest';
 
 // import NotFound from './pages/NotFound';
+
+const AsideLayout = loadable({
+  loader: () => import('./layouts/AsideLayout'),
+  loading: () => <Loading />,
+});
+
+const Home = loadable({
+  loader: () => import('./pages/Home'),
+  loading: () => <Loading />,
+});
+
+const Problems = loadable({
+  loader: () => import('./pages/Problems'),
+  loading: () => <Loading />,
+});
+
+const MyHome = loadable({
+  loader: () => import('./pages/MyHome'),
+  loading: () => <Loading />,
+});
+
+const RecentContest = loadable({
+  loader: () => import('./pages/RecentContest'),
+  loading: () => <Loading />,
+});
+
+const Contests = loadable({
+  loader: () => import('./pages/Contest/pages/Contests'),
+  loading: () => <Loading />,
+});
+
+const ContestHome = loadable({
+  loader: () => import('./pages/Contest/pages/ContestHome'),
+  loading: () => <Loading />,
+});
+
+const ShowContest = loadable({
+  loader: () => import('./pages/Contest/pages/ShowContest'),
+  loading: () => <Loading />,
+});
+
+const Posts = loadable({
+  loader: () => import('./pages/Posts'),
+  loading: () => <Loading />,
+});
+
+const PostsShow = loadable({
+  loader: () => import('./pages/ShowPost'),
+  loading: () => <Loading />,
+});
+
+const Groups = loadable({
+  loader: () => import('./pages/Groups'),
+  loading: () => <Loading />,
+});
+
+const ContestContainer = loadable({
+  loader: () => import('./pages/Contest'),
+  loading: () => <Loading />,
+});
+
 
 const Register = loadable({
   loader: () => import('./pages/Register'),
